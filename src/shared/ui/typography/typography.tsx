@@ -1,0 +1,41 @@
+import React from 'react';
+
+import { cn } from '@/shared/lib';
+import { HeadingProps, ParagraphProps } from './types';
+import { paragraphVariants } from './variants';
+
+export const Heading: React.FC<HeadingProps> = ({
+  className,
+  children,
+  ...props
+}) => {
+  return (
+    <h1
+      className={cn(
+        'font-jetbrains scroll-m-20 text-3xl font-bold tracking-tight lg:text-4xl',
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </h1>
+  );
+};
+
+export const Paragraph: React.FC<ParagraphProps> = ({
+  className,
+  children,
+  variant,
+  font,
+  size,
+  ...props
+}) => {
+  return (
+    <p
+      className={cn(paragraphVariants({ variant, font, size, className }))}
+      {...props}
+    >
+      {children}
+    </p>
+  );
+};

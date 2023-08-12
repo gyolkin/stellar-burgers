@@ -4,11 +4,7 @@ import { navigationMap } from '@/shared/model';
 export const MobileLogo = () => {
   return (
     <Link to={navigationMap.home}>
-      <img
-        src='/img/slogo.png'
-        alt='mobile logo'
-        className='w-[50px] h-[50px]'
-      />
+      <img src='/img/slogo.png' alt='mobile logo' width='50' height='50' />
     </Link>
   );
 };
@@ -19,7 +15,9 @@ export const Logo = () => {
       <img
         src='/img/logo.png'
         alt='logo'
-        className='w-[290px] h-[50px] hover:transition-all hover:scale-105 duration-500'
+        width='290'
+        height='50'
+        className='hover:transition-all hover:scale-105 duration-500'
       />
     </Link>
   );

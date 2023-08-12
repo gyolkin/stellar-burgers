@@ -27,12 +27,15 @@ export const Paragraph: React.FC<ParagraphProps> = ({
   children,
   variant,
   font,
+  weight,
   size,
   ...props
 }) => {
   return (
     <p
-      className={cn(paragraphVariants({ variant, font, size, className }))}
+      className={cn(
+        paragraphVariants({ variant, font, size, weight, className }),
+      )}
       {...props}
     >
       {children}

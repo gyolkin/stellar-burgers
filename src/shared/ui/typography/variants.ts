@@ -1,9 +1,8 @@
 import { cva } from 'class-variance-authority';
 
-export const paragraphVariants = cva('leading-7', {
+export const paragraphVariants = cva('leading-normal', {
   variants: {
     variant: {
-      default: undefined,
       success: 'text-success',
       error: 'text-error',
       warning: 'text-accent',
@@ -16,12 +15,15 @@ export const paragraphVariants = cva('leading-7', {
     size: {
       default: 'text-base',
       small: 'text-sm',
-      large: 'text-xl',
+      medium: 'text-2xl',
+      large: 'text-4xl',
       heading: 'text-8xl',
+    },
+    weight: {
+      bold: 'font-bold',
     },
   },
   defaultVariants: {
-    variant: 'default',
     font: 'default',
     size: 'default',
   },

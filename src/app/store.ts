@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from './root-reducer';
+import { baseApi } from '@/shared/lib';
 
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    [baseApi.reducerPath]: baseApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(baseApi.middleware),
   devTools: import.meta.env.VITE_DEV_MODE !== 'production',
 });
 

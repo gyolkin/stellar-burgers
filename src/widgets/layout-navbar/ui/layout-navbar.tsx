@@ -7,7 +7,7 @@ import { NavigationLink, Button } from '@/shared/ui';
 export const LayoutNavbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   return (
-    <nav className='flex container mx-auto h-full items-center'>
+    <nav className='flex container mx-auto h-full items-center px-2 lg:px-0'>
       <div className='hidden lg:flex flex-1 gap-10'>
         <NavigationLink to={navigationMap.home} icon='BurgerIcon'>
           {constantsMap.navbar.home}

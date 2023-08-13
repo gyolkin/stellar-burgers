@@ -7,10 +7,6 @@ module.exports = {
       screens: {
         xl: '1240px',
       },
-      padding: {
-        DEFAULT: '2rem',
-        xl: 0,
-      },
     },
     extend: {
       colors: {

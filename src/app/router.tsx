@@ -2,8 +2,8 @@ import { Route, Routes } from 'react-router-dom';
 import { HomePage } from '@/pages/home';
 import { NotFoundPage } from '@/pages/not-found';
 import { useGetIngredientsQuery } from '@/entities/ingredients';
-import { navigationMap } from '@/shared/model';
-import { Paragraph } from '@/shared/ui';
+import { navigationMap, constantsMap } from '@/shared/model';
+import { Paragraph, FlexContainer } from '@/shared/ui';
 import { baseLayout, sidebarLayout } from './layout';
 
 export const Router = () => {
@@ -12,7 +12,7 @@ export const Router = () => {
 
   if (isIngredientsLoading) {
     return (
-      <div className='flex items-center justify-center h-screen'>
+      <FlexContainer variant="flexCenter">
         <img
           src='/img/slogo.png'
           width='100'
@@ -20,18 +20,17 @@ export const Router = () => {
           className='animate-pulse'
           alt='loader logo'
         />
-      </div>
+      </FlexContainer>
     );
   }
 
   if (isIngredientsError) {
     return (
-      <div className='flex items-center justify-center h-screen'>
+      <FlexContainer variant="flexCenter">
         <Paragraph size='large'>
-          Возникла ошибка. Пожалуйста, перезагрузите страницу или попробуйте
-          позже.
+          {constantsMap.texts.errorInfo}
         </Paragraph>
-      </div>
+      </FlexContainer>
     );
   }
 

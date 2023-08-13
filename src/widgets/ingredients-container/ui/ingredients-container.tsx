@@ -6,7 +6,7 @@ import {
   type IngredientType,
 } from '@/entities/ingredients';
 import { constantsMap } from '@/shared/model';
-import { Paragraph } from '@/shared/ui';
+import { Heading, Paragraph } from '@/shared/ui';
 import { createSections } from '../lib';
 
 export const IngredientsContainer = () => {
@@ -15,7 +15,8 @@ export const IngredientsContainer = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <>
+    <div className='w-full lg:w-1/2 lg:h-[65vh]'>
+      <Heading className='my-5'>{constantsMap.texts.homeAction}</Heading>
       <TypeTabs containerRef={containerRef} />
       <div
         ref={containerRef}
@@ -39,6 +40,6 @@ export const IngredientsContainer = () => {
           </section>
         ))}
       </div>
-    </>
+    </div>
   );
 };

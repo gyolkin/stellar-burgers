@@ -17,7 +17,10 @@ export const IngredientsContainer = () => {
   return (
     <>
       <TypeTabs containerRef={containerRef} />
-      <div ref={containerRef} className='overflow-x-hidden overflow-y-auto scroll-smooth h-full'>
+      <div
+        ref={containerRef}
+        className='overflow-x-hidden overflow-y-auto scroll-smooth h-full'
+      >
         {Object.entries(sections).map(([type, ingredients]) => (
           <section id={type} key={type}>
             <Paragraph size='medium' weight='bold'>

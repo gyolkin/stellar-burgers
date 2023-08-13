@@ -16,9 +16,7 @@ export const Tab: React.FC<TabProps> = ({
     <div
       className={cn(
         'text-center text-inactive hover:cursor-pointer hover:text-white hover:transition-all duration-500 w-1/3',
-        active
-          ? 'shadow-tabselect text-white'
-          : 'shadow-tab',
+        active ? 'shadow-tabselect text-white' : 'shadow-tab',
       )}
       onClick={handleClick}
     >

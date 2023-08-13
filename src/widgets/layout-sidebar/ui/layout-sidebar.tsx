@@ -1,23 +1,23 @@
-import { navigationMap } from '@/shared/model';
+import { navigationMap, constantsMap } from '@/shared/model';
 import { NavigationLink, Button, Paragraph } from '@/shared/ui';
 
 export const LayoutSidebar = () => {
   return (
     <div className='flex flex-row flex-wrap lg:flex-col gap-8'>
       <NavigationLink to={navigationMap.profile} className='text-lg'>
-        Профиль
+        {constantsMap.sidebar.main}
       </NavigationLink>
       <NavigationLink to={navigationMap.profileOrders} className='text-lg'>
-        История заказов
+        {constantsMap.sidebar.orders}
       </NavigationLink>
       <Button
         variant='link'
         className='justify-start hover:transition-none hover:scale-100 duration-0 p-0 text-lg'
       >
-        Выйти
+        {constantsMap.sidebar.logout}
       </Button>
       <Paragraph variant='inactive' className='lg:pt-10'>
-        В этом разделе вы можете изменить свои персональные данные
+        {constantsMap.texts.sidebarInfo}
       </Paragraph>
     </div>
   );

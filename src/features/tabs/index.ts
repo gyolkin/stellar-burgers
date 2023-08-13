@@ -1,0 +1,1 @@
+export { TypeTabs } from './ui';

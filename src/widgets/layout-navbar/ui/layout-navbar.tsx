@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Logo, MobileLogo } from '@/features/logo';
 import { cn } from '@/shared/lib';
-import { navigationMap, iconsMap } from '@/shared/model';
+import { navigationMap, iconsMap, constantsMap } from '@/shared/model';
 import { NavigationLink, Button } from '@/shared/ui';
 
 export const LayoutNavbar = () => {
@@ -10,10 +10,10 @@ export const LayoutNavbar = () => {
     <nav className='flex container mx-auto h-full items-center'>
       <div className='hidden lg:flex flex-1 gap-10'>
         <NavigationLink to={navigationMap.home} icon='BurgerIcon'>
-          Конструктор
+          {constantsMap.navbar.home}
         </NavigationLink>
         <NavigationLink to={navigationMap.feed} icon='FeedIcon'>
-          Лента заказов
+          {constantsMap.navbar.feed}
         </NavigationLink>
       </div>
       <div className='hidden lg:flex justify-center'>
@@ -21,7 +21,7 @@ export const LayoutNavbar = () => {
       </div>
       <div className='hidden lg:flex flex-1 justify-end'>
         <NavigationLink to={navigationMap.profile} icon='ProfileIcon'>
-          Войти
+          {constantsMap.navbar.login}
         </NavigationLink>
       </div>
       <div className='lg:hidden flex items-center justify-between w-full'>
@@ -54,13 +54,13 @@ export const LayoutNavbar = () => {
         </div>
         <div className='flex flex-col gap-6 p-8'>
           <NavigationLink to={navigationMap.home} icon='BurgerIcon'>
-            Конструктор
+            {constantsMap.navbar.home}
           </NavigationLink>
           <NavigationLink to={navigationMap.feed} icon='FeedIcon'>
-            Лента заказов
+            {constantsMap.navbar.feed}
           </NavigationLink>
           <NavigationLink to={navigationMap.profile} icon='ProfileIcon'>
-            Войти
+            {constantsMap.navbar.login}
           </NavigationLink>
         </div>
       </div>

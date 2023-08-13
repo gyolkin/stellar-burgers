@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { cn } from '@/shared/lib';
 import { HeadingProps, ParagraphProps } from './types';
 import { paragraphVariants } from './variants';

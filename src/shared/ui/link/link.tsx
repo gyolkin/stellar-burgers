@@ -1,6 +1,4 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
-
 import { cn } from '@/shared/lib';
 import { iconsMap } from '@/shared/model';
 import { NavigationLinkProps } from './types';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { iconsMap } from '@/shared/model';
 import { Paragraph } from '@/shared/ui';
 import { IngredientDetailProps } from './types';

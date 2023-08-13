@@ -1,4 +1,3 @@
-import React from 'react';
 import { IngredientModalProps } from './types';
 
 export const IngredientDetail: React.FC<IngredientModalProps> = ({

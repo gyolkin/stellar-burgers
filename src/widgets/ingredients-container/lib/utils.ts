@@ -1,8 +1,6 @@
-import type { IngredientObject, IngredientType } from '@/entities/ingredients';
+import type { CreateSectionsType, SectionType } from '../model';
 
-type SectionType = Record<IngredientType, Array<IngredientObject>>;
-
-export const createSections = (data: Array<IngredientObject>): SectionType =>
+export const createSections: CreateSectionsType = (data) =>
   data.reduce<SectionType>(
     (acc, item) => {
       if (!acc[item.type]) {

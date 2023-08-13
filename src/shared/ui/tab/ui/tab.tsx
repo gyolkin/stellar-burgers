@@ -1,0 +1,28 @@
+import { useCallback } from 'react';
+import { cn } from '@/shared/lib';
+import { Paragraph } from '@/shared/ui';
+import { TabProps } from './types';
+
+export const Tab: React.FC<TabProps> = ({
+  active,
+  value,
+  children,
+  onClick,
+}) => {
+  const handleClick = useCallback(() => {
+    onClick(value);
+  }, [onClick, value]);
+  return (
+    <div
+      className={cn(
+        'text-center text-inactive hover:cursor-pointer hover:text-white hover:transition-all duration-500 w-1/3',
+        active
+          ? 'shadow-tabselect text-white'
+          : 'shadow-tab',
+      )}
+      onClick={handleClick}
+    >
+      <Paragraph>{children}</Paragraph>
+    </div>
+  );
+};

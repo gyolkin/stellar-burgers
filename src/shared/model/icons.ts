@@ -7,6 +7,8 @@ import {
   User,
   X,
   Coins,
+  Lock,
+  Trash2,
 } from 'lucide-react';
 
 export const iconsMap = {
@@ -18,4 +20,6 @@ export const iconsMap = {
   CloseIcon: X,
   ProfileIcon: User,
   PriceIcon: Coins,
+  LockedIcon: Lock,
+  RemoveIcon: Trash2,
 };

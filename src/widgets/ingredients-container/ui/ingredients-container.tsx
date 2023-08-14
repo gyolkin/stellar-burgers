@@ -6,7 +6,7 @@ import {
   type IngredientType,
 } from '@/entities/ingredients';
 import { constantsMap } from '@/shared/model';
-import { Heading, Paragraph } from '@/shared/ui';
+import { Heading, Paragraph, FlexContainer } from '@/shared/ui';
 import { createSections } from '../lib';
 
 export const IngredientsContainer = () => {
@@ -15,19 +15,19 @@ export const IngredientsContainer = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className='w-full lg:w-1/2 lg:h-[65vh]'>
-      <Heading className='my-5'>{constantsMap.texts.homeAction}</Heading>
+    <FlexContainer variant="colStart" className='lg:basis-1/2 lg:gap-4'>
+      <Heading className='text-center lg:text-left'>{constantsMap.texts.homeAction}</Heading>
       <TypeTabs containerRef={containerRef} />
       <div
         ref={containerRef}
-        className='overflow-x-hidden overflow-y-auto scroll-smooth h-full'
+        className='overflow-x-hidden overflow-y-auto scroll-smooth max-h-[65vh] px-2 lg:px-0'
       >
         {Object.entries(sections).map(([type, ingredients]) => (
           <section id={type} key={type}>
             <Paragraph size='medium' weight='bold'>
               {constantsMap.types[type as IngredientType]}
             </Paragraph>
-            <div className='flex flex-row flex-wrap gap-6 ml-4 my-6'>
+            <FlexContainer variant="rowStart" className='gap-6 ml-4 my-6'>
               {ingredients.map((item) => (
                 <IngredientDetail
                   key={item._id}
@@ -36,10 +36,10 @@ export const IngredientsContainer = () => {
                   price={item.price}
                 />
               ))}
-            </div>
+            </FlexContainer>
           </section>
         ))}
       </div>
-    </div>
+    </FlexContainer>
   );
 };

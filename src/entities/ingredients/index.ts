@@ -4,4 +4,4 @@ export type {
   IngredientObject,
   IngredientType,
 } from './model';
-export { IngredientDetail } from './ui';
+export { IngredientDetail, IngredientConstructor } from './ui';

@@ -12,7 +12,7 @@ export const Router = () => {
 
   if (isIngredientsLoading) {
     return (
-      <FlexContainer variant="flexCenter">
+      <FlexContainer className='h-screen'>
         <img
           src='/img/slogo.png'
           width='100'
@@ -26,10 +26,8 @@ export const Router = () => {
 
   if (isIngredientsError) {
     return (
-      <FlexContainer variant="flexCenter">
-        <Paragraph size='large'>
-          {constantsMap.texts.errorInfo}
-        </Paragraph>
+      <FlexContainer className='h-screen'>
+        <Paragraph size='large'>{constantsMap.texts.errorInfo}</Paragraph>
       </FlexContainer>
     );
   }

@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { HomePage } from '@/pages/home';
 import { NotFoundPage } from '@/pages/not-found';
-import { useGetIngredientsQuery } from '@/entities/ingredients';
+import { useGetIngredientsQuery } from '@/entities/ingredient';
 import { navigationMap, constantsMap } from '@/shared/model';
 import { Paragraph, FlexContainer } from '@/shared/ui';
 import { baseLayout, sidebarLayout } from './layout';

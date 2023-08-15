@@ -1,10 +1,11 @@
 import { useRef } from 'react';
-import { TypeTabs } from '@/features/tabs';
+import { v4 as uuidv4 } from 'uuid';
+import { IngredientDetails } from '@/widgets/ingredient-details';
+import { TypeTabs } from '@/features/ingredient/tabs';
 import {
   useGetIngredientsQuery,
-  IngredientDetail,
   type IngredientType,
-} from '@/entities/ingredients';
+} from '@/entities/ingredient';
 import { constantsMap } from '@/shared/model';
 import { Heading, Paragraph, FlexContainer } from '@/shared/ui';
 import { createSections } from '../lib';
@@ -15,8 +16,10 @@ export const IngredientsContainer = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <FlexContainer variant="colStart" className='lg:basis-1/2 lg:gap-4'>
-      <Heading className='text-center lg:text-left'>{constantsMap.texts.homeAction}</Heading>
+    <FlexContainer variant='colStart' className='lg:basis-1/2 lg:gap-4'>
+      <Heading className='text-center lg:text-left'>
+        {constantsMap.texts.homeAction}
+      </Heading>
       <TypeTabs containerRef={containerRef} />
       <div
         ref={containerRef}
@@ -27,14 +30,9 @@ export const IngredientsContainer = () => {
             <Paragraph size='medium' weight='bold'>
               {constantsMap.types[type as IngredientType]}
             </Paragraph>
-            <FlexContainer variant="rowStart" className='gap-6 ml-4 my-6'>
+            <FlexContainer variant='rowStart' className='gap-6 ml-4 my-6'>
               {ingredients.map((item) => (
-                <IngredientDetail
-                  key={item._id}
-                  name={item.name}
-                  image={item.image}
-                  price={item.price}
-                />
+                <IngredientDetails key={uuidv4()} ingredient={item} />
               ))}
             </FlexContainer>
           </section>

@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '@/shared/lib';
 import { iconsMap } from '@/shared/model';
 
-import { InputProps } from './types';
+import type { InputProps } from './types';
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, icon, error, errorText, onIconClick, ...props }, ref) => {

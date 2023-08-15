@@ -19,3 +19,8 @@ export type GetIngredientsServerAnswer = {
   success: boolean;
   data: Array<IngredientObject>;
 };
+
+export type IngredientProps = Pick<
+  IngredientObject,
+  'image' | 'name' | 'price'
+> & { counterSlot?: React.ReactNode };

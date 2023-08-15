@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { cn } from '@/shared/lib';
 import { iconsMap } from '@/shared/model';
-import { NavigationLinkProps } from './types';
+import type { NavigationLinkProps } from './types';
 
 export const NavigationLink: React.FC<NavigationLinkProps> = ({
   icon,

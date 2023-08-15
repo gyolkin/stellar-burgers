@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '@/shared/lib';
-import { ContainerProps } from './types';
+import type { ContainerProps } from './types';
 import { containerVariants } from './variants';
 
 export const FlexContainer = React.forwardRef<HTMLDivElement, ContainerProps>(

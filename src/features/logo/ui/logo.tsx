@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { navigationMap } from '@/shared/model';
 
-export const MobileLogo = () => {
+export const MobileLogo: React.FC = () => {
   return (
     <Link to={navigationMap.home}>
       <img src='/img/slogo.png' alt='mobile logo' width='50' height='50' />
@@ -9,7 +9,7 @@ export const MobileLogo = () => {
   );
 };
 
-export const Logo = () => {
+export const Logo: React.FC = () => {
   return (
     <Link to={navigationMap.home}>
       <img

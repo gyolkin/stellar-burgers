@@ -1,5 +1,5 @@
 import { cn } from '@/shared/lib';
-import { HeadingProps, ParagraphProps } from './types';
+import type { HeadingProps, ParagraphProps } from './types';
 import { paragraphVariants } from './variants';
 
 export const Heading: React.FC<HeadingProps> = ({

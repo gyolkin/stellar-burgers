@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { cn } from '@/shared/lib';
 import { Paragraph } from '@/shared/ui';
-import { TabProps } from './types';
+import type { TabProps } from './types';
 
 export const Tab: React.FC<TabProps> = ({
   active,

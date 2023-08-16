@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { IngredientDetails } from '@/widgets/ingredient-details';
 import { TypeTabs } from '@/features/ingredient/tabs';
 import {
   useGetIngredientsQuery,
@@ -9,6 +8,7 @@ import {
 import { constantsMap } from '@/shared/model';
 import { Heading, Paragraph, FlexContainer } from '@/shared/ui';
 import { createSections } from '../lib';
+import { IngredientDetails } from './ingredient-details';
 
 export const IngredientsContainer = () => {
   const { data } = useGetIngredientsQuery();

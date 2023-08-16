@@ -1,3 +1,6 @@
+import React from 'react';
+import type { ConnectDragSource } from 'react-dnd';
+
 export type IngredientType = 'bun' | 'sauce' | 'main';
 
 export type IngredientObject = {
@@ -23,4 +26,9 @@ export type GetIngredientsServerAnswer = {
 export type IngredientProps = Pick<
   IngredientObject,
   'image' | 'name' | 'price'
-> & { counterSlot?: React.ReactNode };
+> & {
+  counterSlot?: React.ReactNode;
+  removeSlot?: React.ReactNode;
+  addSlot?: React.ReactNode;
+  dragRef?: ConnectDragSource;
+};

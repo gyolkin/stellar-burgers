@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { constructorSlice } from '@/entities/constructor';
 import { baseApi } from '@/shared/lib';
 
 export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
+    [constructorSlice.name]: constructorSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(baseApi.middleware),

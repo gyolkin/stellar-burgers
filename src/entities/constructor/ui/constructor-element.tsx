@@ -11,6 +11,7 @@ export const ConstructorElement: React.FC<ConstructorElementProps> = ({
   type,
   handleClose,
 }) => {
+  // ADD FEATURE SLOTS (!!) IT'S AN ENTITY
   return (
     <div
       className={cn(

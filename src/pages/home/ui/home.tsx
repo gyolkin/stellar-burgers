@@ -1,7 +1,7 @@
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { OrderContainer } from '@/widgets/constructor-container';
 import { IngredientsContainer } from '@/widgets/ingredients-container';
-import { OrderContainer } from '@/widgets/order-container';
 import { FlexContainer } from '@/shared/ui';
 
 export const HomePage = () => {

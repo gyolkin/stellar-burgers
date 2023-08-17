@@ -1,1 +1,1 @@
-export { IngredientsContainer } from './ingredients-container';
+export { IngredientsContainer } from './container';

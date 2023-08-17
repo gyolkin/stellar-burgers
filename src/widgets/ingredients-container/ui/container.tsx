@@ -9,7 +9,7 @@ import {
 import { constantsMap } from '@/shared/model';
 import { Paragraph, FlexContainer } from '@/shared/ui';
 import { createSections } from '../lib';
-import { IngredientDetails } from './ingredient-details';
+import { IngredientDetails } from './card';
 
 export const IngredientsContainer: React.FC = () => {
   const { data } = useGetIngredientsQuery();

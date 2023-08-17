@@ -3,7 +3,7 @@ import { useAppDispatch } from '@/shared/lib';
 import { iconsMap } from '@/shared/model';
 import { Button } from '@/shared/ui';
 
-export const DesktopButtonRemove: React.FC<{ index: number | undefined }> = ({
+export const DesktopButtonRemove: React.FC<{ index?: number }> = ({
   index,
 }) => {
   const dispatch = useAppDispatch();

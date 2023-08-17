@@ -1,30 +1,29 @@
 import { cn } from '@/shared/lib';
-import { iconsMap } from '@/shared/model';
-import { Paragraph } from '@/shared/ui';
+import { FlexContainer, Paragraph } from '@/shared/ui';
 import type { ConstructorElementProps } from '../model';
 
 export const ConstructorElement: React.FC<ConstructorElementProps> = ({
   name,
-  price,
+  priceSlot,
   image,
-  iconSlot,
+  actionSlot,
+  dragSlot,
+  dragRef,
   className,
 }) => {
   return (
-    <div className={cn('inline-block bg-night max-w-xl py-4 px-6', className)}>
-      <div className='flex items-center'>
-        <img src={image} alt={name} className='mr-5' width='80' height='40' />
-        <Paragraph className='inline-flex items-center text-left flex-grow mr-5'>
-          {name}
-        </Paragraph>
-        <span className='inline-flex items-center gap-2 mr-5'>
-          <Paragraph font='digits' size='medium'>
-            {price}
+    <FlexContainer variant="rowStart" className='flex-nowrap items-center pr-5' ref={dragRef}>
+      {dragSlot}
+      <div className={cn('inline-block bg-night py-4 px-6 flex-1', className)}>
+        <div className='flex items-center'>
+          <img src={image} alt={name} className='mr-5' width='80' height='40' />
+          <Paragraph className='inline-flex items-center text-left flex-grow mr-5'>
+            {name}
           </Paragraph>
-          <iconsMap.PriceIcon />
-        </span>
-        {iconSlot}
+          {priceSlot}
+          {actionSlot}
+        </div>
       </div>
-    </div>
+    </FlexContainer>
   );
 };

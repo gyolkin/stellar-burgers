@@ -42,7 +42,17 @@ export const constructorSlice = createSlice({
         state.bun = null;
       }
     },
+    moveIngredient: (
+      state,
+      action: PayloadAction<{ fromElement?: number; toElement?: number }>,
+    ) => {
+      const { fromElement, toElement } = action.payload;
+      if (fromElement === undefined || toElement === undefined) return;
+      const [movedItem] = state.ingredients.splice(fromElement, 1);
+      state.ingredients.splice(toElement, 0, movedItem);
+    },
   },
 });
 
-export const { addIngredient, removeIngredient } = constructorSlice.actions;
+export const { addIngredient, removeIngredient, moveIngredient } =
+  constructorSlice.actions;

@@ -2,7 +2,7 @@ import { MobileButtonAdd, useIngredientDrag } from '@/features/constructor/add';
 import { MobileButtonRemove } from '@/features/constructor/remove';
 import { Counter } from '@/features/ingredient/counter';
 import { selectIngredientCountById } from '@/entities/constructor';
-import { type IngredientObject, Ingredient } from '@/entities/ingredient';
+import { type IngredientObject, Ingredient, IngredientPrice } from '@/entities/ingredient';
 import { useAppSelector } from '@/shared/lib';
 
 export const IngredientDetails: React.FC<{ ingredient: IngredientObject }> = ({
@@ -15,9 +15,9 @@ export const IngredientDetails: React.FC<{ ingredient: IngredientObject }> = ({
   return (
     <Ingredient
       name={ingredient.name}
-      price={ingredient.price}
       image={ingredient.image}
       counterSlot={amount > 0 ? <Counter value={amount} /> : undefined}
+      priceSlot={<IngredientPrice value={ingredient.price} />}
       addSlot={<MobileButtonAdd ingredient={ingredient} />}
       removeSlot={
         amount > 0 ? <MobileButtonRemove id={ingredient._id} /> : undefined

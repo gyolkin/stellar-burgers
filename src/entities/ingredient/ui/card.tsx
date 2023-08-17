@@ -1,14 +1,13 @@
-import { iconsMap } from '@/shared/model';
 import { FlexContainer, Paragraph } from '@/shared/ui';
 import type { IngredientProps } from '../model';
 
 export const Ingredient: React.FC<IngredientProps> = ({
   name,
-  price,
   image,
   counterSlot,
   removeSlot,
   addSlot,
+  priceSlot,
   dragRef,
 }) => {
   return (
@@ -18,12 +17,7 @@ export const Ingredient: React.FC<IngredientProps> = ({
     >
       {counterSlot}
       <img src={image} alt={name} />
-      <span className='inline-flex items-center gap-2'>
-        <Paragraph font='digits' size='medium'>
-          {price}
-        </Paragraph>
-        <iconsMap.PriceIcon />
-      </span>
+      {priceSlot}
       <Paragraph size='small' className='text-center'>
         {name}
       </Paragraph>
@@ -31,7 +25,8 @@ export const Ingredient: React.FC<IngredientProps> = ({
         variant='rowStart'
         className='flex-nowrap gap-4 pt-2 lg:hidden'
       >
-        {removeSlot} {addSlot}
+        {removeSlot}
+        {addSlot}
       </FlexContainer>
     </FlexContainer>
   );

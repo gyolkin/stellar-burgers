@@ -5,17 +5,17 @@ import { Constructor } from '@/entities/constructor';
 import { useAppSelector } from '@/shared/lib';
 import { constantsMap } from '@/shared/model';
 import { FlexContainer, Heading } from '@/shared/ui';
-import { ConstructorElementDetails } from './constructor-details';
-import { PriceDetails } from './price-details';
+import { ConstructorElementDetails } from './card';
+import { PriceSummary } from './price';
 
-export const OrderContainer: React.FC = () => {
+export const ConstructorContainer: React.FC = () => {
   const { isHover, dropTarget } = useIngredientDrop();
   const { bun, ingredients } = useAppSelector(selectConstructor);
   return (
     <Constructor
       dropTarget={dropTarget}
-      hoverClass={isHover && 'border-dashed border-2 border-inactive'}
-      priceSlot={<PriceDetails />}
+      hoverClass={isHover ? 'border-dashed border-2 border-inactive rounded-lg' : 'border-solid border-2 border-transparent'}
+      priceSlot={<PriceSummary />}
     >
       {ingredients.length > 0 || bun ? (
         <FlexContainer variant='colStart' className='hidden lg:flex gap-2'>

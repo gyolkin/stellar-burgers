@@ -42,3 +42,11 @@
   border-radius: 0px;
   border: 0px none #ffffff;
 }
+
+::selection {
+  background: #801ab3; 
+}
+
+::-moz-selection {
+  background: #801ab3;
+}

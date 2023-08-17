@@ -3,6 +3,7 @@ export {
   constructorSlice,
   addIngredient,
   removeIngredient,
+  moveIngredient,
   selectConstructor,
   selectIngredientCountById,
   selectTotalPrice,

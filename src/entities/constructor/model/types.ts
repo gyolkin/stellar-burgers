@@ -7,14 +7,17 @@ directly depends on the IngredientObject type from entities/ingredient.
 */
 
 export interface ConstructorElementProps
-  extends Pick<IngredientObject, 'image' | 'name' | 'price'> {
-  iconSlot: React.ReactNode;
+  extends Pick<IngredientObject, 'image' | 'name'> {
+  priceSlot: React.ReactNode;
+  actionSlot: React.ReactNode;
+  dragSlot: React.ReactNode;
+  dragRef?: React.RefObject<HTMLDivElement>;
   className?: string;
 }
 
 export interface ConstructorListProps extends React.PropsWithChildren {
   dropTarget: ConnectDropTarget;
-  hoverClass?: boolean | string;
+  hoverClass?: string;
   priceSlot: React.ReactNode;
 }
 

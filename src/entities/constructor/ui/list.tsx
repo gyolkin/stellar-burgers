@@ -13,7 +13,7 @@ export const Constructor: React.FC<ConstructorListProps> = ({
       variant='colStart'
       ref={dropTarget}
       className={cn(
-        'w-full lg:basis-1/2 justify-between lg:pt-10 rounded-lg',
+        'w-full lg:basis-1/2 justify-between lg:pt-10',
         hoverClass,
       )}
     >

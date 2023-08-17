@@ -9,6 +9,7 @@ import {
   Coins,
   Lock,
   Trash2,
+  GripVertical,
 } from 'lucide-react';
 
 export const iconsMap = {
@@ -22,4 +23,5 @@ export const iconsMap = {
   PriceIcon: Coins,
   LockedIcon: Lock,
   RemoveIcon: Trash2,
+  MoveIcon: GripVertical,
 };

@@ -28,10 +28,17 @@ export interface IngredientListProps extends React.PropsWithChildren {
   containerRef?: React.RefObject<HTMLDivElement>;
 }
 
+export interface IngredientPriceProps {
+  value: number;
+  digitsSize?: 'medium' | 'large';
+  className?: string;
+}
+
 export interface IngredientProps
-  extends Pick<IngredientObject, 'image' | 'name' | 'price'> {
+  extends Pick<IngredientObject, 'image' | 'name'> {
   counterSlot?: React.ReactNode;
   removeSlot?: React.ReactNode;
   addSlot?: React.ReactNode;
+  priceSlot?: React.ReactNode;
   dragRef?: ConnectDragSource;
 }

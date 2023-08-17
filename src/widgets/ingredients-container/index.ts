@@ -1,1 +1,1 @@
-export { IngredientsContainer } from './ui';
+export * from './ui';

@@ -18,6 +18,7 @@ export const TypeTabs: React.FC<TypeTabsProps> = ({ containerRef }) => {
         container.removeEventListener('scroll', scrollHandler);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [containerRef]);
 
   return (

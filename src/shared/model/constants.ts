@@ -21,6 +21,8 @@ export const constantsMap = {
     homeAction: 'Соберите бургер',
     sidebarInfo: 'В этом разделе вы можете изменить свои персональные данные',
     constructorAction: 'Перетащите сюда ингредиенты, чтобы создать бургер',
+    constructorAddBunAction: 'Добавьте булочку в заказ!',
+    constructorOrderButton: 'Заказать',
     notFoundInfo: 'К сожалению, данной страницы не существует',
     notFoundButton: 'Вернуться назад',
   },

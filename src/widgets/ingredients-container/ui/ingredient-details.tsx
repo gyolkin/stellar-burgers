@@ -8,7 +8,9 @@ import { useAppSelector } from '@/shared/lib';
 export const IngredientDetails: React.FC<{ ingredient: IngredientObject }> = ({
   ingredient,
 }) => {
-  const amount = useAppSelector(selectIngredientCountById(ingredient._id));
+  const amount: number = useAppSelector(
+    selectIngredientCountById(ingredient._id),
+  );
   const dragRef = useIngredientDrag(ingredient);
   return (
     <Ingredient

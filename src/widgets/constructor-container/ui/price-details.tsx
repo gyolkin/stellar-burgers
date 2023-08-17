@@ -1,9 +1,10 @@
+import { OrderButton } from '@/features/constructor/order';
 import { selectTotalPrice } from '@/entities/constructor';
 import { useAppSelector } from '@/shared/lib';
 import { iconsMap } from '@/shared/model';
-import { Button, FlexContainer, Paragraph } from '@/shared/ui';
+import { FlexContainer, Paragraph } from '@/shared/ui';
 
-export const PriceDetails = () => {
+export const PriceDetails: React.FC = () => {
   const totalPrice = useAppSelector(selectTotalPrice);
   return (
     <FlexContainer variant='rowStart' className='justify-end p-2 lg:p-0'>
@@ -13,7 +14,7 @@ export const PriceDetails = () => {
         </Paragraph>
         <iconsMap.PriceIcon />
       </span>
-      <Button>Заказать</Button>
+      <OrderButton />
     </FlexContainer>
   );
 };

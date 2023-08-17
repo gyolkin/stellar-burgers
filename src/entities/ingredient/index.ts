@@ -1,3 +1,3 @@
 export * from './api';
-export type * from './model';
+export type { IngredientObject, IngredientType } from './model';
 export * from './ui';

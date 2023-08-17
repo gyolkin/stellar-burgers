@@ -4,7 +4,7 @@ import { cn } from '@/shared/lib';
 import { navigationMap, iconsMap, constantsMap } from '@/shared/model';
 import { NavigationLink, Button } from '@/shared/ui';
 
-export const LayoutNavbar = () => {
+export const LayoutNavbar: React.FC = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   return (
     <nav className='flex container mx-auto h-full items-center px-2 lg:px-0'>

@@ -3,4 +3,5 @@ export type {
   IngredientObject,
   IngredientType,
   IngredientProps,
+  IngredientListProps,
 } from './types';

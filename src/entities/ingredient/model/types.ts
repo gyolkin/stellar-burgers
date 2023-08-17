@@ -23,12 +23,15 @@ export type GetIngredientsServerAnswer = {
   data: Array<IngredientObject>;
 };
 
-export type IngredientProps = Pick<
-  IngredientObject,
-  'image' | 'name' | 'price'
-> & {
+export interface IngredientListProps extends React.PropsWithChildren {
+  tabsSlot?: React.ReactNode;
+  containerRef?: React.RefObject<HTMLDivElement>;
+}
+
+export interface IngredientProps
+  extends Pick<IngredientObject, 'image' | 'name' | 'price'> {
   counterSlot?: React.ReactNode;
   removeSlot?: React.ReactNode;
   addSlot?: React.ReactNode;
   dragRef?: ConnectDragSource;
-};
+}

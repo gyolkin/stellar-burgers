@@ -1,2 +1,9 @@
 export * from './ui';
-export * from './model';
+export {
+  constructorSlice,
+  addIngredient,
+  removeIngredient,
+  selectConstructor,
+  selectIngredientCountById,
+  selectTotalPrice,
+} from './model';

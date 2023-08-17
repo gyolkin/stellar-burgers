@@ -1,7 +1,7 @@
 import { navigationMap, constantsMap } from '@/shared/model';
 import { NavigationLink, Button, Paragraph } from '@/shared/ui';
 
-export const LayoutSidebar = () => {
+export const LayoutSidebar: React.FC = () => {
   return (
     <div className='flex flex-row flex-wrap lg:flex-col gap-8'>
       <NavigationLink to={navigationMap.profile} className='text-lg'>

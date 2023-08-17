@@ -1,2 +1,2 @@
-export { MobileButtonRemove } from './remove-mobile';
-export { DesktopButtonRemove } from './remove-desktop';
+export { MobileButtonRemove } from './mobile';
+export { DesktopButtonRemove } from './desktop';

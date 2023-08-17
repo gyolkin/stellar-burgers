@@ -4,7 +4,7 @@ import { OrderContainer } from '@/widgets/constructor-container';
 import { IngredientsContainer } from '@/widgets/ingredients-container';
 import { FlexContainer } from '@/shared/ui';
 
-export const HomePage = () => {
+export const HomePage: React.FC = () => {
   return (
     <DndProvider backend={HTML5Backend}>
       <FlexContainer variant='rowStart' className='lg:gap-10 lg:flex-nowrap'>

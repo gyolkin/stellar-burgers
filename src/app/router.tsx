@@ -3,7 +3,7 @@ import { HomePage } from '@/pages/home';
 import { NotFoundPage } from '@/pages/not-found';
 import { useGetIngredientsQuery } from '@/entities/ingredient';
 import { navigationMap, constantsMap } from '@/shared/model';
-import { Paragraph, FlexContainer } from '@/shared/ui';
+import { Paragraph } from '@/shared/ui';
 import { baseLayout, sidebarLayout } from './layout';
 
 export const Router = () => {
@@ -12,7 +12,7 @@ export const Router = () => {
 
   if (isIngredientsLoading) {
     return (
-      <FlexContainer className='h-screen'>
+      <div className='flex flex-col items-center justify-center h-screen'>
         <img
           src='/img/slogo.png'
           width='100'
@@ -20,15 +20,15 @@ export const Router = () => {
           className='animate-pulse'
           alt='loader logo'
         />
-      </FlexContainer>
+      </div>
     );
   }
 
   if (isIngredientsError) {
     return (
-      <FlexContainer className='h-screen'>
+      <div className='flex flex-col items-center justify-center h-screen'>
         <Paragraph size='large'>{constantsMap.texts.errorInfo}</Paragraph>
-      </FlexContainer>
+      </div>
     );
   }
 

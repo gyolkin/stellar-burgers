@@ -10,9 +10,9 @@ import type { ConstructorElementDetailsProps } from '../model';
 export const ConstructorElementDetails: React.FC<
   ConstructorElementDetailsProps
 > = ({ ingredient, index, positionClassName }) => {
-  const ref = useRef(null)
-  const {dragRef, dropTarget} = useConstructorDND(index)
-  dragRef(dropTarget(ref))
+  const ref = useRef(null);
+  const { dragRef, dropTarget } = useConstructorDND(index);
+  dragRef(dropTarget(ref));
   return (
     <ConstructorElement
       name={ingredient.name}

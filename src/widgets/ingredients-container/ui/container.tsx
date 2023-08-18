@@ -7,7 +7,7 @@ import {
   IngredientList,
 } from '@/entities/ingredient';
 import { constantsMap } from '@/shared/model';
-import { Paragraph, FlexContainer } from '@/shared/ui';
+import { Paragraph } from '@/shared/ui';
 import { createSections } from '../lib';
 import { IngredientDetails } from './card';
 
@@ -26,11 +26,11 @@ export const IngredientsContainer: React.FC = () => {
           <Paragraph size='medium' weight='bold'>
             {constantsMap.types[type as IngredientType]}
           </Paragraph>
-          <FlexContainer variant='rowStart' className='gap-6 ml-4 my-6'>
+          <div className='flex flex-row flex-wrap gap-6 ml-4 my-6'>
             {ingredients.map((item) => (
               <IngredientDetails key={uuidv4()} ingredient={item} />
             ))}
-          </FlexContainer>
+          </div>
         </section>
       ))}
     </IngredientList>

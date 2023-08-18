@@ -1,5 +1,4 @@
 import { cn } from '@/shared/lib';
-import { FlexContainer } from '@/shared/ui';
 import type { ConstructorListProps } from '../model';
 
 export const Constructor: React.FC<ConstructorListProps> = ({
@@ -9,16 +8,15 @@ export const Constructor: React.FC<ConstructorListProps> = ({
   hoverClass,
 }) => {
   return (
-    <FlexContainer
-      variant='colStart'
+    <div
       ref={dropTarget}
       className={cn(
-        'w-full lg:basis-1/2 justify-between lg:pt-10',
+        'flex flex-col w-full lg:basis-1/2 justify-between lg:pt-10',
         hoverClass,
       )}
     >
       {children}
       {priceSlot}
-    </FlexContainer>
+    </div>
   );
 };

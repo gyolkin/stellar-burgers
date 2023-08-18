@@ -1,5 +1,5 @@
 import { cn } from '@/shared/lib';
-import { FlexContainer, Paragraph } from '@/shared/ui';
+import { Paragraph } from '@/shared/ui';
 import type { ConstructorElementProps } from '../model';
 
 export const ConstructorElement: React.FC<ConstructorElementProps> = ({
@@ -12,7 +12,7 @@ export const ConstructorElement: React.FC<ConstructorElementProps> = ({
   className,
 }) => {
   return (
-    <FlexContainer variant="rowStart" className='flex-nowrap items-center pr-5' ref={dragRef}>
+    <div className='flex flex-row flex-nowrap items-center pr-5' ref={dragRef}>
       {dragSlot}
       <div className={cn('inline-block bg-night py-4 px-6 flex-1', className)}>
         <div className='flex items-center'>
@@ -24,6 +24,6 @@ export const ConstructorElement: React.FC<ConstructorElementProps> = ({
           {actionSlot}
         </div>
       </div>
-    </FlexContainer>
+    </div>
   );
 };

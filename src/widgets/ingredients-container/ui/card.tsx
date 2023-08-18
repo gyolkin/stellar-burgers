@@ -2,7 +2,11 @@ import { MobileButtonAdd, useIngredientDrag } from '@/features/constructor/add';
 import { MobileButtonRemove } from '@/features/constructor/remove';
 import { Counter } from '@/features/ingredient/counter';
 import { selectIngredientCountById } from '@/entities/constructor';
-import { type IngredientObject, Ingredient, IngredientPrice } from '@/entities/ingredient';
+import {
+  type IngredientObject,
+  Ingredient,
+  IngredientPrice,
+} from '@/entities/ingredient';
 import { useAppSelector } from '@/shared/lib';
 
 export const IngredientDetails: React.FC<{ ingredient: IngredientObject }> = ({

@@ -4,7 +4,7 @@ import { selectConstructor } from '@/entities/constructor';
 import { Constructor } from '@/entities/constructor';
 import { useAppSelector } from '@/shared/lib';
 import { constantsMap } from '@/shared/model';
-import { FlexContainer, Heading } from '@/shared/ui';
+import { Heading } from '@/shared/ui';
 import { ConstructorElementDetails } from './card';
 import { PriceSummary } from './price';
 
@@ -14,11 +14,15 @@ export const ConstructorContainer: React.FC = () => {
   return (
     <Constructor
       dropTarget={dropTarget}
-      hoverClass={isHover ? 'border-dashed border-2 border-inactive rounded-lg' : 'border-solid border-2 border-transparent'}
+      hoverClass={
+        isHover
+          ? 'border-dashed border-2 border-inactive rounded-lg'
+          : 'border-solid border-2 border-transparent'
+      }
       priceSlot={<PriceSummary />}
     >
       {ingredients.length > 0 || bun ? (
-        <FlexContainer variant='colStart' className='hidden lg:flex gap-2'>
+        <div className='hidden lg:flex flex-col gap-2'>
           {bun ? (
             <ConstructorElementDetails
               ingredient={bun}
@@ -29,10 +33,7 @@ export const ConstructorContainer: React.FC = () => {
               {constantsMap.texts.constructorAddBunAction}
             </Heading>
           )}
-          <FlexContainer
-            variant='colStart'
-            className='gap-2 overflow-x-hidden overflow-y-auto scroll-smooth max-h-[36vh]'
-          >
+          <div className='flex flex-col gap-2 overflow-x-hidden overflow-y-auto scroll-smooth max-h-[36vh]'>
             {ingredients?.map((item, index) => (
               <ConstructorElementDetails
                 key={uuid4()}
@@ -41,14 +42,14 @@ export const ConstructorContainer: React.FC = () => {
                 positionClassName='rounded-full'
               />
             ))}
-          </FlexContainer>
+          </div>
           {bun && (
             <ConstructorElementDetails
               ingredient={bun}
               positionClassName='rounded-[40px_40px_88px_88px]'
             />
           )}
-        </FlexContainer>
+        </div>
       ) : (
         <Heading className='hidden lg:block text-shadow text-center lg:pt-48'>
           {constantsMap.texts.constructorAction}

@@ -1,5 +1,5 @@
 import { constantsMap } from '@/shared/model';
-import { FlexContainer, Heading } from '@/shared/ui';
+import { Heading } from '@/shared/ui';
 import type { IngredientListProps } from '../model';
 
 export const IngredientList: React.FC<IngredientListProps> = ({
@@ -8,7 +8,7 @@ export const IngredientList: React.FC<IngredientListProps> = ({
   containerRef,
 }) => {
   return (
-    <FlexContainer variant='colStart' className='lg:basis-1/2 lg:gap-4'>
+    <div className='flex flex-col lg:basis-1/2 lg:gap-4'>
       <Heading className='text-center lg:text-left'>
         {constantsMap.texts.homeAction}
       </Heading>
@@ -19,6 +19,6 @@ export const IngredientList: React.FC<IngredientListProps> = ({
       >
         {children}
       </div>
-    </FlexContainer>
+    </div>
   );
 };

@@ -13,7 +13,7 @@ import { IngredientDetails } from './card';
 
 export const IngredientsContainer: React.FC = () => {
   const { data } = useGetIngredientsQuery();
-  const sections = createSections(data!.data);
+  const sections = createSections(data!);
   const tabsConnectionRef = useRef<HTMLDivElement>(null);
 
   return (

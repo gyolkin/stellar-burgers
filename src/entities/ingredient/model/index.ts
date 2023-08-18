@@ -1,5 +1,4 @@
 export type {
-  GetIngredientsServerAnswer,
   IngredientObject,
   IngredientType,
   IngredientProps,

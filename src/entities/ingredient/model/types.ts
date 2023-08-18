@@ -18,11 +18,6 @@ export type IngredientObject = {
   __v: number;
 };
 
-export type GetIngredientsServerAnswer = {
-  success: boolean;
-  data: Array<IngredientObject>;
-};
-
 export interface IngredientListProps extends React.PropsWithChildren {
   tabsSlot?: React.ReactNode;
   containerRef?: React.RefObject<HTMLDivElement>;

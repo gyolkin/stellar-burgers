@@ -1,8 +1,16 @@
 export const constantsMap = {
-  types: {
-    bun: 'Булочки',
-    sauce: 'Соусы',
-    main: 'Начинки',
+  ingredients: {
+    types: {
+      bun: 'Булочки',
+      sauce: 'Соусы',
+      main: 'Начинки',
+    },
+    details: {
+      calories: 'Калории, ккал',
+      carbohydrates: 'Углеводы, г',
+      fat: 'Жиры, г',
+      proteins: 'Белки, г',
+    },
   },
   navbar: {
     home: 'Конструктор',

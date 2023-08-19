@@ -17,7 +17,7 @@ export const Logo: React.FC = () => {
         alt='logo'
         width='290'
         height='50'
-        className='hover:transition-all hover:scale-105 duration-500'
+        className='hover:scale-110 duration-500'
       />
     </Link>
   );

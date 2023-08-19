@@ -1,2 +1,1 @@
-export { handleScroll } from './handle-scroll';
-export { handleClick } from './handle-click';
+export { handleScroll, handleClick } from './utils';

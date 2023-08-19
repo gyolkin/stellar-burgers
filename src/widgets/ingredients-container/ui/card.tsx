@@ -18,6 +18,7 @@ export const IngredientDetails: React.FC<{ ingredient: IngredientObject }> = ({
   const dragRef = useIngredientDrag(ingredient);
   return (
     <Ingredient
+      _id={ingredient._id}
       name={ingredient.name}
       image={ingredient.image}
       counterSlot={amount > 0 ? <Counter value={amount} /> : undefined}

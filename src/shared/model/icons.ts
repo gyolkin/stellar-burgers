@@ -10,6 +10,7 @@ import {
   Lock,
   Trash2,
   GripVertical,
+  ArrowLeft,
 } from 'lucide-react';
 
 export const iconsMap = {
@@ -24,4 +25,5 @@ export const iconsMap = {
   LockedIcon: Lock,
   RemoveIcon: Trash2,
   MoveIcon: GripVertical,
+  BackIcon: ArrowLeft,
 };

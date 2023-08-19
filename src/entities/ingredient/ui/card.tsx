@@ -1,7 +1,10 @@
+import { Link, useLocation } from 'react-router-dom';
+import { navigationMap } from '@/shared/model';
 import { Paragraph } from '@/shared/ui';
 import type { IngredientProps } from '../model';
 
 export const Ingredient: React.FC<IngredientProps> = ({
+  _id,
   name,
   image,
   counterSlot,
@@ -10,18 +13,25 @@ export const Ingredient: React.FC<IngredientProps> = ({
   priceSlot,
   dragRef,
 }) => {
+  const location = useLocation();
   return (
     <div
+      className='relative basis-2/5 hover:scale-110 duration-500'
       ref={dragRef}
-      className='relative flex flex-col items-center justify-center gap-2 basis-2/5 hover:transition-all hover:scale-110 duration-500 hover:cursor-pointer'
     >
-      {counterSlot}
-      <img src={image} alt={name} />
-      {priceSlot}
-      <Paragraph size='small' className='text-center'>
-        {name}
-      </Paragraph>
-      <div className='flex flex-row flex-nowrap gap-4 pt-2 lg:hidden'>
+      <Link
+        to={navigationMap.ingredients + `/${_id}`}
+        state={{ background: location }}
+        className='flex flex-col justify-center items-center gap-2'
+      >
+        {counterSlot}
+        <img src={image} alt={name} />
+        {priceSlot}
+        <Paragraph size='small' className='text-center'>
+          {name}
+        </Paragraph>
+      </Link>
+      <div className='flex flex-row flex-nowrap justify-center gap-4 pt-2 lg:hidden'>
         {removeSlot}
         {addSlot}
       </div>

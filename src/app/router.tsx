@@ -1,12 +1,20 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { HomePage } from '@/pages/home';
+import { IngredientPage } from '@/pages/ingredient';
 import { NotFoundPage } from '@/pages/not-found';
 import { useGetIngredientsQuery } from '@/entities/ingredient';
-import { navigationMap, constantsMap } from '@/shared/model';
-import { Paragraph } from '@/shared/ui';
+import {
+  navigationMap,
+  constantsMap,
+  type LocationState,
+} from '@/shared/model';
+import { Modal, Paragraph } from '@/shared/ui';
 import { baseLayout, sidebarLayout } from './layout';
 
 export const Router = () => {
+  const location = useLocation();
+  const background = (location.state as LocationState)?.background;
+  const navigate = useNavigate();
   const { isLoading: isIngredientsLoading, isError: isIngredientsError } =
     useGetIngredientsQuery();
 
@@ -33,15 +41,38 @@ export const Router = () => {
   }
 
   return (
-    <Routes>
-      <Route element={baseLayout}>
-        <Route path={navigationMap.home} element={<HomePage />} />
-        <Route path={navigationMap.feed} element={<HomePage />} />
-      </Route>
-      <Route element={sidebarLayout}>
-        <Route path={navigationMap.profile} element={<HomePage />} />
-      </Route>
-      <Route path='*' element={<NotFoundPage />} />
-    </Routes>
+    <>
+      <Routes location={background || location}>
+        <Route element={baseLayout}>
+          <Route path={navigationMap.home} element={<HomePage />} />
+          <Route path={navigationMap.feed} element={<HomePage />} />
+          <Route
+            path={navigationMap.ingredients + '/:id'}
+            element={<IngredientPage />}
+          />
+        </Route>
+        <Route element={sidebarLayout}>
+          <Route path={navigationMap.profile} element={<HomePage />} />
+        </Route>
+        <Route path='*' element={<NotFoundPage />} />
+      </Routes>
+      {background && (
+        <Routes>
+          <Route
+            path={navigationMap.ingredients + '/:id'}
+            element={
+              <Modal
+                heading='Детали ингредиента'
+                onClose={() => {
+                  navigate(-1);
+                }}
+              >
+                <IngredientPage />
+              </Modal>
+            }
+          />
+        </Routes>
+      )}
+    </>
   );
 };

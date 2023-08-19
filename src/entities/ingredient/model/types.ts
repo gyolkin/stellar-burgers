@@ -30,10 +30,16 @@ export interface IngredientPriceProps {
 }
 
 export interface IngredientProps
-  extends Pick<IngredientObject, 'image' | 'name'> {
+  extends Pick<IngredientObject, '_id' | 'image' | 'name'> {
   counterSlot?: React.ReactNode;
   removeSlot?: React.ReactNode;
   addSlot?: React.ReactNode;
   priceSlot?: React.ReactNode;
   dragRef?: ConnectDragSource;
 }
+
+export interface IngredientModalProps
+  extends Pick<
+    IngredientObject,
+    'image_large' | 'name' | 'calories' | 'carbohydrates' | 'fat' | 'proteins'
+  > {}

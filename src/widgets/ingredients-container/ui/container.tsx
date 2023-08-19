@@ -8,8 +8,8 @@ import {
 } from '@/entities/ingredient';
 import { constantsMap } from '@/shared/model';
 import { Paragraph } from '@/shared/ui';
-import { createSections } from '../lib';
 import { IngredientDetails } from './card';
+import { createSections } from './utils';
 
 export const IngredientsContainer: React.FC = () => {
   const { data } = useGetIngredientsQuery();
@@ -24,7 +24,7 @@ export const IngredientsContainer: React.FC = () => {
       {Object.entries(sections).map(([type, ingredients]) => (
         <section id={type} key={type}>
           <Paragraph size='medium' weight='bold'>
-            {constantsMap.types[type as IngredientType]}
+            {constantsMap.ingredients.types[type as IngredientType]}
           </Paragraph>
           <div className='flex flex-row flex-wrap gap-6 ml-4 my-6'>
             {ingredients.map((item) => (

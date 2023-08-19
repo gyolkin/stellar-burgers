@@ -13,7 +13,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <input
             type={type}
             className={cn(
-              'rounded-full w-full bg-night px-6 py-4 outline-none placeholder:text-inactive focus:transition-all duration-500 disabled:cursor-not-allowed disabled:opacity-50',
+              'rounded-full w-full bg-night px-6 py-4 outline-none placeholder:text-inactive duration-500 disabled:cursor-not-allowed disabled:opacity-50',
               error
                 ? 'border-2 border-error'
                 : 'border-none focus:ring-2 focus:ring-accent',

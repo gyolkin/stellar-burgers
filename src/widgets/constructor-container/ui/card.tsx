@@ -9,24 +9,24 @@ import type { ConstructorElementDetailsProps } from '../model';
 
 export const ConstructorElementDetails: React.FC<
   ConstructorElementDetailsProps
-> = ({ ingredient, index, positionClassName }) => {
+> = ({ name, price, image, type, index, positionClassName }) => {
   const ref = useRef(null);
   const { dragRef, dropTarget } = useConstructorDND(index);
   dragRef(dropTarget(ref));
   return (
     <ConstructorElement
-      name={ingredient.name}
-      image={ingredient.image}
-      priceSlot={<IngredientPrice value={ingredient.price} className='mr-5' />}
+      name={name}
+      image={image}
+      priceSlot={<IngredientPrice value={price} className='mr-5' />}
       actionSlot={
-        ingredient.type === 'bun' ? (
+        type === 'bun' ? (
           <iconsMap.LockedIcon className='text-inactive inline-flex items-center ml-5' />
         ) : (
           <DesktopButtonRemove index={index} />
         )
       }
-      dragRef={ingredient.type === 'bun' ? undefined : ref}
-      dragSlot={ingredient.type === 'bun' ? undefined : <MoveIcon />}
+      dragRef={type === 'bun' ? undefined : ref}
+      dragSlot={type === 'bun' ? undefined : <MoveIcon />}
       className={positionClassName}
     />
   );

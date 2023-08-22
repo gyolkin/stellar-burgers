@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { TypeTabs } from '@/features/ingredient/tabs';
 import {
   useGetIngredientsQuery,
@@ -28,7 +27,7 @@ export const IngredientsContainer: React.FC = () => {
           </Paragraph>
           <div className='flex flex-row flex-wrap gap-6 ml-4 my-6'>
             {ingredients.map((item) => (
-              <IngredientDetails key={uuidv4()} ingredient={item} />
+              <IngredientDetails key={item._id} ingredient={item} />
             ))}
           </div>
         </section>

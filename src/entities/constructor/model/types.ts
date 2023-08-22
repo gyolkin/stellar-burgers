@@ -6,6 +6,11 @@ FSD prohibits importing content within the same layer, however in this case the 
 directly depends on the IngredientObject type from entities/ingredient.
 */
 
+export interface ConstructorIngredientObject
+  extends Pick<IngredientObject, 'image' | 'name' | 'price' | 'type' | '_id'> {
+  constructorId: string;
+}
+
 export interface ConstructorElementProps
   extends Pick<IngredientObject, 'image' | 'name'> {
   priceSlot: React.ReactNode;

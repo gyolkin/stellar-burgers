@@ -2,7 +2,7 @@
 
 @layer base {
   html {
-    @apply text-white bg-primary;
+    @apply text-white bg-primary font-jetbrains;
   } 
 }
 

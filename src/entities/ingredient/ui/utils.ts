@@ -1,6 +1,6 @@
 import { constantsMap } from '@/shared/model';
 
-const { details } = constantsMap.ingredients;
+const { details } = constantsMap.entities.ingredient;
 export const createDetails = (
   calories: number,
   carbohydrates: number,

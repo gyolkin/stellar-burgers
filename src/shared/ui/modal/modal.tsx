@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import PortalReactDOM from 'react-dom';
 import { cn } from '@/shared/lib';
-import { iconsMap } from '@/shared/model';
+import { constantsMap, iconsMap } from '@/shared/model';
 import { ModalProps } from './types';
 
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   ({ className, children, onClose, heading, ...props }, ref) => {
     const modalRoot = document.getElementById('modal');
+    const { modalCloseKey } = constantsMap.shared.config;
     useEffect(() => {
       function handleKeyDown(event: KeyboardEvent) {
-        if (event.key === 'Escape') {
+        if (event.key === modalCloseKey) {
           onClose();
         }
       }
@@ -17,7 +18,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       return () => {
         document.removeEventListener('keydown', handleKeyDown);
       };
-    }, [onClose]);
+    }, [onClose, modalCloseKey]);
 
     if (!modalRoot) return null;
     return PortalReactDOM.createPortal(
@@ -40,9 +41,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               heading ? 'justify-between' : 'justify-end',
             )}
           >
-            {heading && (
-              <p className='font-jetbrains text-2xl font-bold'>{heading}</p>
-            )}
+            {heading && <p className='text-2xl font-bold'>{heading}</p>}
             <button onClick={onClose}>
               <iconsMap.CloseIcon />
             </button>

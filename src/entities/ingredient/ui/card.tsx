@@ -16,7 +16,7 @@ export const Ingredient: React.FC<IngredientProps> = ({
   const location = useLocation();
   return (
     <div
-      className='relative basis-2/5 hover:scale-110 duration-500'
+      className='relative basis-2/5 lg:hover:scale-110 lg:duration-500'
       ref={dragRef}
     >
       <Link

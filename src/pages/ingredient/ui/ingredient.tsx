@@ -9,6 +9,7 @@ import {
 import { Paragraph } from '@/shared/ui';
 
 export const IngredientPage: React.FC = () => {
+  const { types } = constantsMap.entities.ingredient;
   const location = useLocation();
   const background = (location.state as LocationState)?.background;
   const { id } = useParams();
@@ -27,8 +28,7 @@ export const IngredientPage: React.FC = () => {
             <iconsMap.BackIcon />
           </Link>
           <Paragraph variant='inactive' size='small'>
-            {constantsMap.ingredients.types[ingredient.type]} /{' '}
-            {ingredient.name}
+            {types[ingredient.type]} / {ingredient.name}
           </Paragraph>
         </div>
       )}

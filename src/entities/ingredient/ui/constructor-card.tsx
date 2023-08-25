@@ -1,8 +1,8 @@
 import { cn } from '@/shared/lib';
 import { Paragraph } from '@/shared/ui';
-import type { ConstructorElementProps } from '../model';
+import type { ConstructorIngredientProps } from '../model';
 
-export const ConstructorElement: React.FC<ConstructorElementProps> = ({
+export const ConstructorIngredient: React.FC<ConstructorIngredientProps> = ({
   name,
   priceSlot,
   image,

@@ -1,20 +1,24 @@
-import { useRef } from 'react';
+import { useRef, memo } from 'react';
 import { useConstructorDND } from '@/features/constructor/move';
 import { DesktopButtonRemove } from '@/features/constructor/remove';
 import { MoveIcon } from '@/entities/constructor';
-import { ConstructorElement } from '@/entities/constructor';
-import { IngredientPrice } from '@/entities/ingredient';
+import { IngredientPrice, ConstructorIngredient } from '@/entities/ingredient';
 import { iconsMap } from '@/shared/model';
-import type { ConstructorElementDetailsProps } from '../model';
+import type { ConstructorElementProps } from '../model';
 
-export const ConstructorElementDetails: React.FC<
-  ConstructorElementDetailsProps
-> = ({ name, price, image, type, index, positionClassName }) => {
+const ConstructorElement: React.FC<ConstructorElementProps> = ({
+  name,
+  price,
+  image,
+  type,
+  index,
+  positionClassName,
+}) => {
   const ref = useRef(null);
   const { dragRef, dropTarget } = useConstructorDND(index);
   dragRef(dropTarget(ref));
   return (
-    <ConstructorElement
+    <ConstructorIngredient
       name={name}
       image={image}
       priceSlot={<IngredientPrice value={price} className='mr-5' />}
@@ -31,3 +35,5 @@ export const ConstructorElementDetails: React.FC<
     />
   );
 };
+
+export const MemoizedConstructorElement = memo(ConstructorElement);

@@ -8,12 +8,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, icon, error, errorText, onIconClick, ...props }, ref) => {
     const IconComponent = icon ? iconsMap[icon] : null;
     return (
-      <div className={cn('font-jetbrains', className)}>
-        <div className='flex items-center justify-end h-14'>
+      <div className={className}>
+        <div className='flex items-center justify-end'>
           <input
             type={type}
             className={cn(
-              'rounded-full w-full bg-night px-6 py-4 outline-none placeholder:text-inactive duration-500 disabled:cursor-not-allowed disabled:opacity-50',
+              'rounded-full bg-night px-8 py-5 lg:min-w-[28rem] outline-none placeholder:text-inactive duration-500 disabled:cursor-not-allowed disabled:opacity-50',
               error
                 ? 'border-2 border-error'
                 : 'border-none focus:ring-2 focus:ring-accent',

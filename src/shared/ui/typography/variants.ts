@@ -9,7 +9,6 @@ export const paragraphVariants = cva('leading-normal', {
       inactive: 'text-inactive',
     },
     font: {
-      default: 'font-jetbrains',
       digits: 'font-iceland',
     },
     size: {
@@ -24,7 +23,6 @@ export const paragraphVariants = cva('leading-normal', {
     },
   },
   defaultVariants: {
-    font: 'default',
     size: 'default',
   },
 });

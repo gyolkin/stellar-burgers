@@ -9,9 +9,10 @@ export const handleClick: HandleClickType = (setCurrent, value) => {
 };
 
 export const handleScroll: HandleScrollType = (setCurrent, containerRef) => {
+  const { types } = constantsMap.entities.ingredient;
   const container = containerRef.current;
   if (!container) return;
-  const tabs = Object.keys(constantsMap.ingredients.types);
+  const tabs = Object.keys(types);
   for (const tab of tabs) {
     const section = document.getElementById(tab);
     if (!section) continue;

@@ -4,6 +4,7 @@ export {
   addIngredient,
   removeIngredient,
   moveIngredient,
+  clearConstructor,
   selectConstructor,
   selectIngredientCountById,
   selectTotalPrice,

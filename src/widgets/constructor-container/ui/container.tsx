@@ -1,30 +1,30 @@
 import { useIngredientDrop } from '@/features/constructor/add';
 import { selectConstructor } from '@/entities/constructor';
-import { Constructor } from '@/entities/constructor';
-import { useAppSelector } from '@/shared/lib';
+import { cn, useAppSelector } from '@/shared/lib';
 import { constantsMap } from '@/shared/model';
 import { Heading } from '@/shared/ui';
-import { ConstructorElementDetails } from './card';
+import { MemoizedConstructorElement } from './card';
 import { PriceSummary } from './price';
 
 export const ConstructorContainer: React.FC = () => {
+  const { onAddBunText, onEmptyText } =
+    constantsMap.widgets.constructorContainer;
   const { isHover, dropTarget } = useIngredientDrop();
   const { bun, ingredients } = useAppSelector(selectConstructor);
   return (
-    <Constructor
-      dropTarget={dropTarget}
-      hoverClass={
+    <div
+      ref={dropTarget}
+      className={cn(
+        'flex flex-col w-full lg:basis-1/2 justify-between lg:pt-10',
         isHover
           ? 'border-dashed border-2 border-inactive rounded-lg'
-          : 'border-solid border-2 border-transparent'
-      }
-      priceSlot={<PriceSummary />}
+          : 'border-solid border-2 border-transparent',
+      )}
     >
       {ingredients.length > 0 || bun ? (
         <div className='hidden lg:flex flex-col gap-2'>
           {bun ? (
-            <ConstructorElementDetails
-              key={bun.constructorId}
+            <MemoizedConstructorElement
               name={bun.name}
               price={bun.price}
               image={bun.image}
@@ -33,12 +33,12 @@ export const ConstructorContainer: React.FC = () => {
             />
           ) : (
             <Heading className='hidden lg:block text-shadow text-center pb-10'>
-              {constantsMap.texts.constructorAddBunAction}
+              {onAddBunText}
             </Heading>
           )}
           <div className='flex flex-col gap-2 overflow-x-hidden overflow-y-auto scroll-smooth max-h-[36vh]'>
             {ingredients?.map((item, index) => (
-              <ConstructorElementDetails
+              <MemoizedConstructorElement
                 index={index}
                 key={item.constructorId}
                 name={item.name}
@@ -50,8 +50,7 @@ export const ConstructorContainer: React.FC = () => {
             ))}
           </div>
           {bun && (
-            <ConstructorElementDetails
-              key={bun.constructorId}
+            <MemoizedConstructorElement
               name={bun.name}
               price={bun.price}
               image={bun.image}
@@ -62,9 +61,10 @@ export const ConstructorContainer: React.FC = () => {
         </div>
       ) : (
         <Heading className='hidden lg:block text-shadow text-center lg:pt-48'>
-          {constantsMap.texts.constructorAction}
+          {onEmptyText}
         </Heading>
       )}
-    </Constructor>
+      <PriceSummary />
+    </div>
   );
 };

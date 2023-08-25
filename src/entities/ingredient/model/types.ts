@@ -18,11 +18,6 @@ export type IngredientObject = {
   __v: number;
 };
 
-export interface IngredientListProps extends React.PropsWithChildren {
-  tabsSlot?: React.ReactNode;
-  containerRef?: React.RefObject<HTMLDivElement>;
-}
-
 export interface IngredientPriceProps {
   value: number;
   digitsSize?: 'medium' | 'large';
@@ -36,6 +31,15 @@ export interface IngredientProps
   addSlot?: React.ReactNode;
   priceSlot?: React.ReactNode;
   dragRef?: ConnectDragSource;
+}
+
+export interface ConstructorIngredientProps
+  extends Pick<IngredientObject, 'image' | 'name'> {
+  priceSlot: React.ReactNode;
+  actionSlot: React.ReactNode;
+  dragSlot: React.ReactNode;
+  dragRef?: React.RefObject<HTMLDivElement>;
+  className?: string;
 }
 
 export interface IngredientModalProps

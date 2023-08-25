@@ -1,1 +1,1 @@
-export type { ConstructorElementDetailsProps } from './types';
+export type { ConstructorElementProps } from './types';

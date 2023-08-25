@@ -5,6 +5,7 @@ import { handleScroll, handleClick } from '../lib';
 import type { TypeTabsProps } from '../model';
 
 export const TypeTabs: React.FC<TypeTabsProps> = ({ containerRef }) => {
+  const { types } = constantsMap.entities.ingredient;
   const [currentTab, setCurrentTab] = useState('bun');
   const scrollHandler = () => handleScroll(setCurrentTab, containerRef);
 
@@ -23,7 +24,7 @@ export const TypeTabs: React.FC<TypeTabsProps> = ({ containerRef }) => {
 
   return (
     <div className='inline-flex w-full h-10 mt-5 mb-10'>
-      {Object.entries(constantsMap.ingredients.types).map(([type, name]) => (
+      {Object.entries(types).map(([type, name]) => (
         <Tab
           key={type}
           value={type}

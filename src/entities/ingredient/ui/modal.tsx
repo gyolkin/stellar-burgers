@@ -17,7 +17,7 @@ export const IngredientModal: React.FC<IngredientModalProps> = ({
       <Paragraph className='text-center font-bold' size='medium'>
         {name}
       </Paragraph>
-      <div className='flex flex-row flex-wrap gap-6 justify-center items-center'>
+      <div className='flex flex-row flex-nowrap gap-6 justify-center items-center'>
         {details.map((item, index) => (
           <div
             key={index}

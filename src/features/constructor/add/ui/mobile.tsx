@@ -1,11 +1,13 @@
 import { addIngredient } from '@/entities/constructor';
 import type { IngredientObject } from '@/entities/ingredient';
 import { useAppDispatch } from '@/shared/lib';
+import { constantsMap } from '@/shared/model';
 import { Button } from '@/shared/ui';
 
 export const MobileButtonAdd: React.FC<{ ingredient: IngredientObject }> = ({
   ingredient,
 }) => {
+  const { addText } = constantsMap.features.constructor.add;
   const dispatch = useAppDispatch();
   return (
     <Button
@@ -13,7 +15,7 @@ export const MobileButtonAdd: React.FC<{ ingredient: IngredientObject }> = ({
       className='text-white p-0'
       onClick={() => dispatch(addIngredient(ingredient))}
     >
-      Добавить
+      {addText}
     </Button>
   );
 };

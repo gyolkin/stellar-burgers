@@ -1,68 +1,69 @@
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { HomePage } from '@/pages/home';
 import { IngredientPage } from '@/pages/ingredient';
+import { LoginPage } from '@/pages/login';
 import { NotFoundPage } from '@/pages/not-found';
-import { useGetIngredientsQuery } from '@/entities/ingredient';
+import { ProfilePage } from '@/pages/profile';
+import { RegisterPage } from '@/pages/register';
 import {
   navigationMap,
-  constantsMap,
   type LocationState,
+  constantsMap,
 } from '@/shared/model';
-import { Modal, Paragraph } from '@/shared/ui';
+import { Modal } from '@/shared/ui';
+import { ProtectedRoute } from './core';
 import { baseLayout, sidebarLayout } from './layout';
 
 export const Router = () => {
   const location = useLocation();
   const background = (location.state as LocationState)?.background;
   const navigate = useNavigate();
-  const { isLoading: isIngredientsLoading, isError: isIngredientsError } =
-    useGetIngredientsQuery();
-
-  if (isIngredientsLoading) {
-    return (
-      <div className='flex flex-col items-center justify-center h-screen'>
-        <img
-          src='/img/slogo.png'
-          width='100'
-          height='100'
-          className='animate-pulse'
-          alt='loader logo'
-        />
-      </div>
-    );
-  }
-
-  if (isIngredientsError) {
-    return (
-      <div className='flex flex-col items-center justify-center h-screen'>
-        <Paragraph size='large'>{constantsMap.texts.errorInfo}</Paragraph>
-      </div>
-    );
-  }
-
   return (
     <>
       <Routes location={background || location}>
         <Route element={baseLayout}>
           <Route path={navigationMap.home} element={<HomePage />} />
-          <Route path={navigationMap.feed} element={<HomePage />} />
+          <Route path={navigationMap.feed} element={<div>Hello</div>} />
           <Route
-            path={navigationMap.ingredients + '/:id'}
+            path={navigationMap.ingredientById}
             element={<IngredientPage />}
+          />
+          <Route
+            path={navigationMap.login}
+            element={
+              <ProtectedRoute anonymous>
+                <LoginPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={navigationMap.register}
+            element={
+              <ProtectedRoute anonymous>
+                <RegisterPage />
+              </ProtectedRoute>
+            }
           />
         </Route>
         <Route element={sidebarLayout}>
-          <Route path={navigationMap.profile} element={<HomePage />} />
+          <Route
+            path={navigationMap.profile}
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
         </Route>
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
       {background && (
         <Routes>
           <Route
-            path={navigationMap.ingredients + '/:id'}
+            path={navigationMap.ingredientById}
             element={
               <Modal
-                heading='Детали ингредиента'
+                heading={constantsMap.entities.ingredient.modal.headingText}
                 onClose={() => {
                   navigate(-1);
                 }}

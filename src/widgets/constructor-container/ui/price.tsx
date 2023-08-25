@@ -1,4 +1,4 @@
-import { OrderButton } from '@/features/constructor/order';
+import { OrderButton } from '@/features/order';
 import { selectTotalPrice } from '@/entities/constructor';
 import { IngredientPrice } from '@/entities/ingredient';
 import { useAppSelector } from '@/shared/lib';

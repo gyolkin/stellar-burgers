@@ -1,4 +1,4 @@
-import { baseApi } from '@/shared/lib';
+import { baseApi } from '@/shared/api';
 import { apiMap } from '@/shared/model';
 import type { IngredientObject } from '../model';
 
@@ -18,7 +18,7 @@ export const ingredientsApi = baseApi.injectEndpoints({
         }
         return response.data;
       },
-      keepUnusedDataFor: 0,
+      keepUnusedDataFor: Infinity,
     }),
   }),
 });

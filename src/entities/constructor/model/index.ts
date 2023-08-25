@@ -1,9 +1,9 @@
-export type { ConstructorElementProps, ConstructorListProps } from './types';
 export {
   constructorSlice,
   addIngredient,
   removeIngredient,
   moveIngredient,
+  clearConstructor,
 } from './slice';
 export {
   selectConstructor,

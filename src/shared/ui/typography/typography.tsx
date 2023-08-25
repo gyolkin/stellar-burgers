@@ -10,7 +10,7 @@ export const Heading: React.FC<HeadingProps> = ({
   return (
     <h1
       className={cn(
-        'font-jetbrains scroll-m-20 text-3xl font-bold tracking-tight lg:text-4xl',
+        'scroll-m-20 text-3xl font-bold tracking-tight lg:text-4xl',
         className,
       )}
       {...props}

@@ -15,7 +15,7 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
       {...props}
       className={({ isActive }) =>
         cn(
-          'font-jetbrains flex flex-row gap-2',
+          'flex flex-row gap-2',
           isActive ? 'text-white' : 'text-inactive',
           className,
         )

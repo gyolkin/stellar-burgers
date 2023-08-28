@@ -6,15 +6,12 @@ import {
 import { cn, getApiError, useForm } from '@/shared/lib';
 import { constantsMap } from '@/shared/model';
 import { Input, Button, Paragraph } from '@/shared/ui';
+import { initialData } from '../model';
 
 export const LoginForm: React.FC = () => {
-  const { loginLink } = constantsMap.features.auth.login;
-  const [login, { isLoading, isError: isFormError, error: formError }] =
-    usePostLoginMutation();
-  const { values, handleChange } = useForm<LoginFormData>({
-    email: '',
-    password: '',
-  });
+  const { loginButton } = constantsMap.features.auth.login;
+  const [login, { isLoading, isError, error }] = usePostLoginMutation();
+  const { values, handleChange } = useForm<LoginFormData>(initialData);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     login(values);
@@ -27,8 +24,8 @@ export const LoginForm: React.FC = () => {
       )}
       onSubmit={handleSubmit}
     >
-      {isFormError && formError && (
-        <Paragraph variant='error'>{getApiError(formError)}</Paragraph>
+      {isError && error && (
+        <Paragraph variant='error'>{getApiError(error)}</Paragraph>
       )}
       <Input
         value={values.email}
@@ -44,7 +41,7 @@ export const LoginForm: React.FC = () => {
         disabled={isLoading}
       />
       <Button type='submit' className='lg:max-w-xs' disabled={isLoading}>
-        {loginLink}
+        {loginButton}
       </Button>
     </form>
   );

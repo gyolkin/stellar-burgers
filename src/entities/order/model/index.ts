@@ -1,1 +1,1 @@
-export type { TransformedOrderObject, OrderObject } from './types';
+export type { OrderObject } from './types';

@@ -7,5 +7,5 @@ export interface LocationState {
 
 export interface ApiError {
   status: number;
-  data: { success: boolean; message: string };
+  data: ServerSuccess & { message: string };
 }

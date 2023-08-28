@@ -13,14 +13,14 @@ export const LoginPage: React.FC = () => {
       <LoginForm />
       <div className='flex flex-col items-center gap-2 pt-5 lg:pt-10'>
         <Paragraph variant='inactive'>
-          {content.registerText}
+          {content.registerText}{' '}
           <Link to={navigationMap.register} className='text-accent'>
             {content.registerLink}
           </Link>
         </Paragraph>
         <Paragraph variant='inactive'>
-          {content.forgotPasswordText}
-          <Link to={navigationMap.register} className='text-accent'>
+          {content.forgotPasswordText}{' '}
+          <Link to={navigationMap.forgotPassword} className='text-accent'>
             {content.forgotPasswordLink}
           </Link>
         </Paragraph>

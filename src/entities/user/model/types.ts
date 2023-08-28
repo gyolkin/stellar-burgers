@@ -8,22 +8,20 @@ export type LoginFormData = {
   password: string;
 };
 
-export type RegisterFormData = LoginFormData & {
-  name: string;
+export type UserObjectWithPassword = UserObject & {
+  password: string;
 };
 
 export type TokenObject = {
-  token: string;
-};
-
-export type AuthServerAnswer = {
-  success: boolean;
   accessToken: string;
   refreshToken: string;
+};
+
+export type UserWithTokens = TokenObject & {
   user: UserObject;
 };
 
-export interface PasswordInputProps
+export interface CustomInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: 'PasswordIcon' | 'PasswordHideIcon';
   error?: boolean;

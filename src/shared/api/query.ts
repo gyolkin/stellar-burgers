@@ -1,12 +1,14 @@
-import { fetchBaseQuery } from '@reduxjs/toolkit/query';
-import type { BaseQueryFn, FetchArgs } from '@reduxjs/toolkit/query';
+import {
+  type BaseQueryFn,
+  type FetchArgs,
+  fetchBaseQuery,
+} from '@reduxjs/toolkit/query/react';
 import { Mutex } from 'async-mutex';
 import Cookies from 'js-cookie';
 import { apiMap, type ApiError, constantsMap } from '../model';
 
-const mutex = new Mutex();
-
 const { cookieExpires } = constantsMap.shared.config;
+const mutex = new Mutex();
 const _baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_URL,
   prepareHeaders: (headers) => {
@@ -26,6 +28,7 @@ export const baseQuery: BaseQueryFn<
 > = async (args, api, extraOptions) => {
   await mutex.waitForUnlock();
   let result = await _baseQuery(args, api, extraOptions);
+  // refresh tokens if jwt expired (403 status code)
   if (result.error && result.error.status === 403) {
     if (!mutex.isLocked()) {
       const release = await mutex.acquire();
@@ -40,7 +43,7 @@ export const baseQuery: BaseQueryFn<
           extraOptions,
         );
         // [NOTE]: very bad approach
-        if (res.data?.success) {
+        if (res.data) {
           Cookies.set('accessToken', res.data.accessToken, cookieExpires);
           Cookies.set('refreshToken', res.data.refreshToken, cookieExpires);
           result = await _baseQuery(args, api, extraOptions);

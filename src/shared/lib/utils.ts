@@ -10,7 +10,7 @@ export const cn = (...inputs: ClassValue[]) => {
 export const getApiError = (error: ApiError | SerializedError) => {
   const { defaultError } = constantsMap.shared.config;
   if ('status' in error) {
-    return error.data.message;
+    return error.data?.message || defaultError; // shows 'defaultError' when PARSE, FETCH etc. errors
   }
   return error.message ? error.message : defaultError;
 };

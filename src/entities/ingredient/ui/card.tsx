@@ -31,7 +31,7 @@ export const Ingredient: React.FC<IngredientProps> = ({
           {name}
         </Paragraph>
       </Link>
-      <div className='flex flex-row flex-nowrap justify-center gap-4 pt-2 lg:hidden'>
+      <div className='flex flex-col gap-1 sm:flex-row sm:gap-4 sm:flex-nowrap justify-center pt-2 lg:hidden'>
         {removeSlot}
         {addSlot}
       </div>

@@ -12,6 +12,16 @@ export const constantsMap = {
       loginText: 'Уже зарегистрированы?',
       loginLink: 'Войти',
     },
+    forgotPassword: {
+      mainText: 'Восстановление пароля',
+      rememberPasswordText: 'Вспомнили пароль?',
+      rememberPasswordLink: 'Войти',
+    },
+    resetPassword: {
+      mainText: 'Сброс пароля',
+      rememberPasswordText: 'Вспомнили пароль?',
+      rememberPasswordLink: 'Войти',
+    },
     notFound: {
       mainText: 'К сожалению, данной страницы не существует',
       backButton: 'Вернуться назад',
@@ -25,7 +35,6 @@ export const constantsMap = {
     layoutSidebar: {
       mainLink: 'Профиль',
       ordersLink: 'История заказов',
-      logoutLink: 'Выйти',
       footerText: 'В этом разделе вы можете изменить свои персональные данные',
     },
     ingredientsContainer: {
@@ -43,10 +52,27 @@ export const constantsMap = {
     auth: {
       login: {
         loginLink: 'Войти',
+        loginButton: 'Войти',
         profileLink: 'Профиль',
       },
       register: {
         registerLink: 'Зарегистрироваться',
+        registerButton: 'Зарегистрироваться',
+      },
+      profile: {
+        changeButton: 'Сохранить изменения',
+        loadingText: 'Отправляем данные...',
+        successText: 'Изменения сохранены',
+      },
+      logout: {
+        logoutButton: 'Выйти',
+        loadingText: 'Выходим...',
+      },
+      forgotPassword: {
+        continueButton: 'Восстановить',
+      },
+      resetPassword: {
+        resetButton: 'Подтвердить',
       },
     },
     constructor: {

@@ -2,10 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface AuthState {
   isAuthenticated: boolean;
+  isForgotPassword: boolean;
 }
 
 const initialState: AuthState = {
   isAuthenticated: false,
+  isForgotPassword: false,
 };
 
 export const authSlice = createSlice({
@@ -18,7 +20,18 @@ export const authSlice = createSlice({
     setLoggedOut: (state) => {
       state.isAuthenticated = false;
     },
+    setForgotPassword: (state) => {
+      state.isForgotPassword = true;
+    },
+    setPasswordRestored: (state) => {
+      state.isForgotPassword = false;
+    },
   },
 });
 
-export const { setLoggedIn, setLoggedOut } = authSlice.actions;
+export const {
+  setLoggedIn,
+  setLoggedOut,
+  setForgotPassword,
+  setPasswordRestored,
+} = authSlice.actions;

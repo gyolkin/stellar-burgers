@@ -6,16 +6,16 @@ import { navigationMap, iconsMap, constantsMap } from '@/shared/model';
 import { NavigationLink, Button } from '@/shared/ui';
 
 export const LayoutNavbar: React.FC = () => {
-  const content = constantsMap.widgets.layoutNavbar;
+  const { homeLink, feedLink } = constantsMap.widgets.layoutNavbar;
   const [isMenuOpen, setMenuOpen] = useState(false);
   return (
     <nav className='flex container mx-auto h-full items-center px-2 lg:px-0'>
       <div className='hidden lg:flex flex-1 gap-10'>
         <NavigationLink to={navigationMap.home} icon='BurgerIcon'>
-          {content.homeLink}
+          {homeLink}
         </NavigationLink>
         <NavigationLink to={navigationMap.feed} icon='FeedIcon'>
-          {content.feedLink}
+          {feedLink}
         </NavigationLink>
       </div>
       <div className='hidden lg:flex justify-center'>
@@ -54,10 +54,10 @@ export const LayoutNavbar: React.FC = () => {
         </div>
         <div className='flex flex-col gap-6 p-8'>
           <NavigationLink to={navigationMap.home} icon='BurgerIcon'>
-            {content.homeLink}
+            {homeLink}
           </NavigationLink>
           <NavigationLink to={navigationMap.feed} icon='FeedIcon'>
-            {content.feedLink}
+            {feedLink}
           </NavigationLink>
           <ProfileButton />
         </div>

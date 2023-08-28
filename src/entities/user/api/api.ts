@@ -4,9 +4,12 @@ import { apiMap, constantsMap } from '@/shared/model';
 import {
   type UserObject,
   type LoginFormData,
-  type RegisterFormData,
-  type AuthServerAnswer,
+  type UserObjectWithPassword,
+  type UserWithTokens,
   setLoggedIn,
+  setLoggedOut,
+  setForgotPassword,
+  setPasswordRestored,
 } from '../model';
 
 const { cookieExpires } = constantsMap.shared.config;
@@ -18,10 +21,7 @@ export const authApi = baseApi.injectEndpoints({
         method: 'POST',
         body: credentials,
       }),
-      transformResponse: (response: AuthServerAnswer) => {
-        if (!response.success) {
-          throw new Error('Authentication failed');
-        }
+      transformResponse: (response: UserWithTokens) => {
         Cookies.set('accessToken', response.accessToken, cookieExpires);
         Cookies.set('refreshToken', response.refreshToken, cookieExpires);
         return response.user;
@@ -35,16 +35,13 @@ export const authApi = baseApi.injectEndpoints({
       },
     }),
 
-    postRegister: build.mutation<UserObject, RegisterFormData>({
+    postRegister: build.mutation<UserObject, UserObjectWithPassword>({
       query: (credentials) => ({
         url: apiMap.postRegister,
         method: 'POST',
         body: credentials,
       }),
-      transformResponse: (response: AuthServerAnswer) => {
-        if (!response.success) {
-          throw new Error('Registration failed');
-        }
+      transformResponse: (response: UserWithTokens) => {
         Cookies.set('accessToken', response.accessToken, cookieExpires);
         Cookies.set('refreshToken', response.refreshToken, cookieExpires);
         return response.user;
@@ -63,13 +60,10 @@ export const authApi = baseApi.injectEndpoints({
         url: apiMap.getUser,
         method: 'GET',
       }),
-      transformResponse: (response: { success: boolean; user: UserObject }) => {
-        if (!response.success) {
-          throw new Error('Failed to fetch data');
-        }
+      keepUnusedDataFor: Infinity,
+      transformResponse: (response: { user: UserObject }) => {
         return response.user;
       },
-      keepUnusedDataFor: Infinity,
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
         if (data) {
@@ -77,8 +71,81 @@ export const authApi = baseApi.injectEndpoints({
         }
       },
     }),
+
+    patchMe: build.mutation<UserObject, UserObjectWithPassword>({
+      query: (credentials) => ({
+        url: apiMap.patchUser,
+        method: 'PATCH',
+        body: credentials,
+      }),
+      transformResponse: (response: { user: UserObject }) => {
+        return response.user;
+      },
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        const { data } = await queryFulfilled;
+        if (data) {
+          dispatch(
+            authApi.util.updateQueryData('getMe', undefined, () => data),
+          );
+        }
+      },
+    }),
+
+    postLogout: build.mutation<{ message: string }, string>({
+      query: (credentials) => ({
+        url: apiMap.postLogout,
+        method: 'POST',
+        body: { token: credentials },
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        const { data } = await queryFulfilled;
+        if (data) {
+          Cookies.remove('accessToken');
+          Cookies.remove('refreshToken');
+          dispatch(setLoggedOut());
+        }
+      },
+    }),
+
+    postForgotPassword: build.mutation<{ message: string }, { email: string }>({
+      query: (credentials) => ({
+        url: apiMap.postForgotPassword,
+        method: 'POST',
+        body: credentials,
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        const { data } = await queryFulfilled;
+        if (data) {
+          dispatch(setForgotPassword());
+        }
+      },
+    }),
+
+    postResetPassword: build.mutation<
+      { message: string },
+      { password: string; token: string }
+    >({
+      query: (credentials) => ({
+        url: apiMap.postResetPassword,
+        method: 'POST',
+        body: credentials,
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        const { data } = await queryFulfilled;
+        if (data) {
+          dispatch(setPasswordRestored());
+        }
+      },
+    }),
   }),
 });
 
-export const { usePostLoginMutation, usePostRegisterMutation, useGetMeQuery } =
-  authApi;
+export const {
+  usePostLoginMutation,
+  usePostRegisterMutation,
+  useGetMeQuery,
+  usePatchMeMutation,
+  usePostLogoutMutation,
+  usePostForgotPasswordMutation,
+  usePostResetPasswordMutation,
+} = authApi;

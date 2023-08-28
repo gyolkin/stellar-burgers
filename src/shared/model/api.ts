@@ -6,5 +6,7 @@ export const apiMap = {
   postRegister: 'auth/register',
   postTokenRefresh: 'auth/token',
   postLogout: 'auth/logout',
+  postForgotPassword: 'password-reset',
+  postResetPassword: 'password-reset/reset',
   postOrder: 'orders',
 };

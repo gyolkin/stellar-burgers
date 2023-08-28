@@ -49,7 +49,7 @@ export const OrderButton: React.FC = () => {
           {isError && error && (
             <Paragraph variant='error'>{getApiError(error)}</Paragraph>
           )}
-          {data && <OrderModalContent name={data.name} number={data.number} />}
+          {data && <OrderModalContent name={data.name} order={data.order} />}
         </Modal>
       )}
     </>

@@ -1,10 +1,16 @@
 export type {
   UserObject,
   LoginFormData,
-  RegisterFormData,
-  AuthServerAnswer,
-  PasswordInputProps,
+  UserObjectWithPassword,
+  UserWithTokens,
+  CustomInputProps,
   TokenObject,
 } from './types';
-export { authSlice, setLoggedIn, setLoggedOut } from './slice';
-export { selectIsAuthenticated } from './selectors';
+export {
+  authSlice,
+  setLoggedIn,
+  setLoggedOut,
+  setForgotPassword,
+  setPasswordRestored,
+} from './slice';
+export { selectIsAuthenticated, selectIsForgotPassword } from './selectors';

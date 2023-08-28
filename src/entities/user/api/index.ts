@@ -1,6 +1,1 @@
-export {
-  authApi,
-  usePostLoginMutation,
-  usePostRegisterMutation,
-  useGetMeQuery,
-} from './api';
+export * from './api';

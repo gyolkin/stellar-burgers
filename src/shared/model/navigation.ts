@@ -7,5 +7,7 @@ export const navigationMap = {
   profileOrders: '/profile/orders',
   login: '/login',
   register: '/register',
+  forgotPassword: '/forgot-password',
+  resetPassword: '/reset-password',
   error404: '/not-found',
 };

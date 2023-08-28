@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Input } from '@/shared/ui';
-import { PasswordInputProps } from '../model';
+import { CustomInputProps } from '../model';
 
-export const PasswordInput: React.FC<PasswordInputProps> = (props) => {
+export const PasswordInput: React.FC<CustomInputProps> = (props) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <Input

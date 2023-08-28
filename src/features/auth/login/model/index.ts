@@ -1,0 +1,1 @@
+export { initialData } from './data';

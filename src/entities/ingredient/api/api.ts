@@ -9,16 +9,10 @@ export const ingredientsApi = baseApi.injectEndpoints({
         url: apiMap.getIngredients,
         method: 'GET',
       }),
-      transformResponse: (response: {
-        success: boolean;
-        data: Array<IngredientObject>;
-      }) => {
-        if (!response.success) {
-          throw new Error('Failed to fetch data');
-        }
+      keepUnusedDataFor: Infinity,
+      transformResponse: (response: { data: Array<IngredientObject> }) => {
         return response.data;
       },
-      keepUnusedDataFor: Infinity,
     }),
   }),
 });

@@ -13,7 +13,7 @@ export const RegisterPage: React.FC = () => {
       <RegisterForm />
       <div className='flex flex-col items-center gap-2 pt-5 lg:pt-10'>
         <Paragraph variant='inactive'>
-          {loginText}
+          {loginText}{' '}
           <Link to={navigationMap.login} className='text-accent'>
             {loginLink}
           </Link>

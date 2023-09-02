@@ -5,9 +5,9 @@ import {
 } from '@reduxjs/toolkit/query/react';
 import { Mutex } from 'async-mutex';
 import Cookies from 'js-cookie';
-import { apiMap, type ApiError, constantsMap } from '../model';
+import { removeCookies, setCookies } from '../lib';
+import { apiMap, type ApiError } from '../model';
 
-const { cookieExpires } = constantsMap.shared.config;
 const mutex = new Mutex();
 const _baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_URL,
@@ -20,7 +20,7 @@ const _baseQuery = fetchBaseQuery({
   },
 }) as BaseQueryFn<string | FetchArgs, unknown, ApiError, {}>;
 
-export const baseQuery: BaseQueryFn<
+export const baseQueryWithRefresh: BaseQueryFn<
   string | FetchArgs,
   unknown,
   ApiError,
@@ -44,12 +44,11 @@ export const baseQuery: BaseQueryFn<
         );
         // [NOTE]: very bad approach
         if (res.data) {
-          Cookies.set('accessToken', res.data.accessToken, cookieExpires);
-          Cookies.set('refreshToken', res.data.refreshToken, cookieExpires);
+          const { refreshToken, accessToken } = res.data;
+          setCookies({ refreshToken, accessToken });
           result = await _baseQuery(args, api, extraOptions);
         } else {
-          Cookies.remove('accessToken');
-          Cookies.remove('refreshToken');
+          removeCookies();
           window.location.href = '/login';
         }
         // needs optimization

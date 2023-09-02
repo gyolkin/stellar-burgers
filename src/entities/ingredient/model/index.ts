@@ -5,5 +5,6 @@ export type {
   IngredientPriceProps,
   IngredientModalProps,
   ConstructorIngredientProps,
-  GetIngredientsServerAnswer,
+  UseIngredientsOptions,
+  OrderIngredientProps,
 } from './types';

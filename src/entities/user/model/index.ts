@@ -5,12 +5,7 @@ export type {
   UserWithTokens,
   CustomInputProps,
   TokenObject,
+  PasswordWithToken,
 } from './types';
-export {
-  authSlice,
-  setLoggedIn,
-  setLoggedOut,
-  setForgotPassword,
-  setPasswordRestored,
-} from './slice';
+export { authSlice, setLoggedOut } from './slice';
 export { selectIsAuthenticated, selectIsForgotPassword } from './selectors';

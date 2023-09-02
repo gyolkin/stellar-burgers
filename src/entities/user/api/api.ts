@@ -1,18 +1,14 @@
-import Cookies from 'js-cookie';
 import { baseApi } from '@/shared/api';
-import { apiMap, constantsMap } from '@/shared/model';
-import {
-  type UserObject,
-  type LoginFormData,
-  type UserObjectWithPassword,
-  type UserWithTokens,
-  setLoggedIn,
-  setLoggedOut,
-  setForgotPassword,
-  setPasswordRestored,
+import { removeCookies, setCookies } from '@/shared/lib';
+import { apiMap } from '@/shared/model';
+import type {
+  UserObject,
+  LoginFormData,
+  UserObjectWithPassword,
+  UserWithTokens,
+  PasswordWithToken,
 } from '../model';
 
-const { cookieExpires } = constantsMap.shared.config;
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     postLogin: build.mutation<UserObject, LoginFormData>({
@@ -22,15 +18,14 @@ export const authApi = baseApi.injectEndpoints({
         body: credentials,
       }),
       transformResponse: (response: UserWithTokens) => {
-        Cookies.set('accessToken', response.accessToken, cookieExpires);
-        Cookies.set('refreshToken', response.refreshToken, cookieExpires);
+        const { accessToken, refreshToken } = response;
+        setCookies({ refreshToken, accessToken });
         return response.user;
       },
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
         if (data) {
           dispatch(authApi.util.upsertQueryData('getMe', undefined, data));
-          dispatch(setLoggedIn());
         }
       },
     }),
@@ -42,15 +37,14 @@ export const authApi = baseApi.injectEndpoints({
         body: credentials,
       }),
       transformResponse: (response: UserWithTokens) => {
-        Cookies.set('accessToken', response.accessToken, cookieExpires);
-        Cookies.set('refreshToken', response.refreshToken, cookieExpires);
+        const { accessToken, refreshToken } = response;
+        setCookies({ refreshToken, accessToken });
         return response.user;
       },
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         const { data } = await queryFulfilled;
         if (data) {
           dispatch(authApi.util.upsertQueryData('getMe', undefined, data));
-          dispatch(setLoggedIn());
         }
       },
     }),
@@ -63,12 +57,6 @@ export const authApi = baseApi.injectEndpoints({
       keepUnusedDataFor: Infinity,
       transformResponse: (response: { user: UserObject }) => {
         return response.user;
-      },
-      async onQueryStarted(_, { dispatch, queryFulfilled }) {
-        const { data } = await queryFulfilled;
-        if (data) {
-          dispatch(setLoggedIn());
-        }
       },
     }),
 
@@ -91,51 +79,37 @@ export const authApi = baseApi.injectEndpoints({
       },
     }),
 
-    postLogout: build.mutation<{ message: string }, string>({
+    postLogout: build.mutation<{ message: string }, { token: string }>({
       query: (credentials) => ({
         url: apiMap.postLogout,
         method: 'POST',
-        body: { token: credentials },
+        body: credentials,
       }),
-      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+      async onQueryStarted(_, { queryFulfilled }) {
         const { data } = await queryFulfilled;
         if (data) {
-          Cookies.remove('accessToken');
-          Cookies.remove('refreshToken');
-          dispatch(setLoggedOut());
+          removeCookies();
         }
       },
     }),
 
-    postForgotPassword: build.mutation<{ message: string }, { email: string }>({
+    postForgotPassword: build.mutation<
+      { message: string },
+      Pick<UserObject, 'email'>
+    >({
       query: (credentials) => ({
         url: apiMap.postForgotPassword,
         method: 'POST',
         body: credentials,
       }),
-      async onQueryStarted(_, { dispatch, queryFulfilled }) {
-        const { data } = await queryFulfilled;
-        if (data) {
-          dispatch(setForgotPassword());
-        }
-      },
     }),
 
-    postResetPassword: build.mutation<
-      { message: string },
-      { password: string; token: string }
-    >({
+    postResetPassword: build.mutation<{ message: string }, PasswordWithToken>({
       query: (credentials) => ({
         url: apiMap.postResetPassword,
         method: 'POST',
         body: credentials,
       }),
-      async onQueryStarted(_, { dispatch, queryFulfilled }) {
-        const { data } = await queryFulfilled;
-        if (data) {
-          dispatch(setPasswordRestored());
-        }
-      },
     }),
   }),
 });

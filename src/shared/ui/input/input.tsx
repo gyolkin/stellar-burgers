@@ -6,7 +6,7 @@ import type { InputProps } from './types';
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, icon, error, errorText, onIconClick, ...props }, ref) => {
-    const IconComponent = icon ? iconsMap[icon] : null;
+    const IconComponent = icon && iconsMap[icon];
     return (
       <div className={className}>
         <div className='flex items-center justify-end'>

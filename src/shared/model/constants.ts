@@ -1,5 +1,32 @@
 export const constantsMap = {
   pages: {
+    home: {
+      mainText: 'Соберите бургер',
+      constructorContainer: {
+        onEmptyText: 'Перетащите сюда ингредиенты, чтобы собрать бургер',
+        onAddBunText: 'Добавьте булочку в заказ!',
+      },
+    },
+    feed: {
+      mainText: 'Лента заказов',
+      doneText: 'Готовы:',
+      pendingText: 'В работе:',
+      doneAllTimeText: 'Выполнено за все время:',
+      doneTodayText: 'Выполнено за сегодня:',
+      tabs: {
+        mainTab: 'История',
+        statsTab: 'Статистика',
+      },
+      orders: {
+        loadingText: 'Загружаем историю заказов...',
+        errorText:
+          'Ошибка загрузки. Пожалуйста, обновите страницу или попробуйте позже',
+      },
+    },
+    order: {
+      loadingText: 'Загружаем заказ...',
+      ingredientsText: 'Состав:',
+    },
     login: {
       mainText: 'Вход',
       registerText: 'Вы новый пользователь?',
@@ -22,6 +49,13 @@ export const constantsMap = {
       rememberPasswordText: 'Вспомнили пароль?',
       rememberPasswordLink: 'Войти',
     },
+    profile: {
+      orders: {
+        errorText:
+          'Ошибка загрузки. Пожалуйста, обновите страницу или попробуйте позже',
+        loadingText: 'Загружаем историю ваших заказов...',
+      },
+    },
     notFound: {
       mainText: 'К сожалению, данной страницы не существует',
       backButton: 'Вернуться назад',
@@ -37,13 +71,6 @@ export const constantsMap = {
       ordersLink: 'История заказов',
       footerText: 'В этом разделе вы можете изменить свои персональные данные',
     },
-    ingredientsContainer: {
-      mainText: 'Соберите бургер',
-    },
-    constructorContainer: {
-      onEmptyText: 'Перетащите сюда ингредиенты, чтобы создать бургер',
-      onAddBunText: 'Добавьте булочку в заказ!',
-    },
   },
   features: {
     order: {
@@ -54,15 +81,18 @@ export const constantsMap = {
         loginLink: 'Войти',
         loginButton: 'Войти',
         profileLink: 'Профиль',
+        errorHeadingText: 'Ошибка авторизации',
       },
       register: {
         registerLink: 'Зарегистрироваться',
         registerButton: 'Зарегистрироваться',
+        errorHeadingText: 'Ошибка регистрации',
       },
       profile: {
         changeButton: 'Сохранить изменения',
         loadingText: 'Отправляем данные...',
         successText: 'Изменения сохранены',
+        errorHeadingText: 'Ошибка изменения данных',
       },
       logout: {
         logoutButton: 'Выйти',
@@ -70,9 +100,11 @@ export const constantsMap = {
       },
       forgotPassword: {
         continueButton: 'Восстановить',
+        errorHeadingText: 'Ошибка восстановления',
       },
       resetPassword: {
         resetButton: 'Подтвердить',
+        errorHeadingText: 'Ошибка сброса пароля',
       },
     },
     constructor: {
@@ -102,7 +134,13 @@ export const constantsMap = {
       },
     },
     order: {
+      status: {
+        done: 'Выполнен',
+        created: 'Создан',
+        pending: 'Готовится',
+      },
       modal: {
+        headingText: 'Детали заказа',
         mainText: 'Ваш заказ начали готовить',
         inactiveText: 'Дождитесь готовности на орбитальной станции',
         loadingText: 'Создаем заказ...',
@@ -112,10 +150,9 @@ export const constantsMap = {
   },
   shared: {
     config: {
-      cookieExpires: { expires: 7 },
       modalCloseKey: 'Escape',
-      defaultError:
-        'Возникла ошибка. Пожалуйста, перезагрузите страницу или попробуйте позже',
+      defaultError: 'Пожалуйста, перезагрузите страницу или попробуйте позже',
+      reloadPageText: 'Перезагрузить страницу',
     },
   },
 };

@@ -14,6 +14,8 @@ import {
   EyeOff,
   LogIn,
   CheckCheck,
+  XCircle,
+  Info,
 } from 'lucide-react';
 
 export const iconsMap = {
@@ -32,4 +34,5 @@ export const iconsMap = {
   MoveIcon: GripVertical,
   BackIcon: ArrowLeft,
   TickIcon: CheckCheck,
+  ErrorIcon: XCircle,
 };

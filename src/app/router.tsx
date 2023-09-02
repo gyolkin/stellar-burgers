@@ -1,9 +1,12 @@
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { FeedPage } from '@/pages/feed';
 import { ForgotPasswordPage } from '@/pages/forgot-password';
 import { HomePage } from '@/pages/home';
 import { IngredientPage } from '@/pages/ingredient';
 import { LoginPage } from '@/pages/login';
 import { NotFoundPage } from '@/pages/not-found';
+import { OrderPage } from '@/pages/order';
+import { ProfileOrdersPage } from '@/pages/profile';
 import { RegisterPage } from '@/pages/register';
 import { ResetPasswordPage } from '@/pages/reset-password';
 import { ProfileForm } from '@/features/auth/profile';
@@ -25,11 +28,12 @@ export const Router = () => {
       <Routes location={background || location}>
         <Route element={baseLayout}>
           <Route path={navigationMap.home} element={<HomePage />} />
-          <Route path={navigationMap.feed} element={<div>Hello</div>} />
+          <Route path={navigationMap.feed} element={<FeedPage />} />
           <Route
             path={navigationMap.ingredientById}
             element={<IngredientPage />}
           />
+          <Route path={navigationMap.feedOrderById} element={<OrderPage />} />
           <Route
             path={navigationMap.login}
             element={
@@ -63,14 +67,15 @@ export const Router = () => {
             }
           />
         </Route>
-        <Route element={sidebarLayout}>
+        <Route element={<ProtectedRoute>{sidebarLayout}</ProtectedRoute>}>
+          <Route path={navigationMap.profile} element={<ProfileForm />} />
           <Route
-            path={navigationMap.profile}
-            element={
-              <ProtectedRoute>
-                <ProfileForm />
-              </ProtectedRoute>
-            }
+            path={navigationMap.profileOrders}
+            element={<ProfileOrdersPage />}
+          />
+          <Route
+            path={navigationMap.profileOrderById}
+            element={<OrderPage />}
           />
         </Route>
         <Route path='*' element={<NotFoundPage />} />
@@ -88,6 +93,34 @@ export const Router = () => {
               >
                 <IngredientPage />
               </Modal>
+            }
+          />
+          <Route
+            path={navigationMap.feedOrderById}
+            element={
+              <Modal
+                heading={constantsMap.entities.order.modal.headingText}
+                onClose={() => {
+                  navigate(-1);
+                }}
+              >
+                <OrderPage />
+              </Modal>
+            }
+          />
+          <Route
+            path={navigationMap.profileOrderById}
+            element={
+              <ProtectedRoute>
+                <Modal
+                  heading={constantsMap.entities.order.modal.headingText}
+                  onClose={() => {
+                    navigate(-1);
+                  }}
+                >
+                  <OrderPage />
+                </Modal>
+              </ProtectedRoute>
             }
           />
         </Routes>

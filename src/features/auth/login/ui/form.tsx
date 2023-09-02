@@ -1,21 +1,18 @@
-import {
-  type LoginFormData,
-  usePostLoginMutation,
-  PasswordInput,
-} from '@/entities/user';
+import { usePostLoginMutation, PasswordInput } from '@/entities/user';
 import { cn, getApiError, useForm } from '@/shared/lib';
 import { constantsMap } from '@/shared/model';
-import { Input, Button, Paragraph } from '@/shared/ui';
+import { Input, Button, Alert } from '@/shared/ui';
 import { initialData } from '../model';
 
 export const LoginForm: React.FC = () => {
-  const { loginButton } = constantsMap.features.auth.login;
+  const { loginButton, errorHeadingText } = constantsMap.features.auth.login;
   const [login, { isLoading, isError, error }] = usePostLoginMutation();
-  const { values, handleChange } = useForm<LoginFormData>(initialData);
+  const { values, handleChange } = useForm(initialData);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     login(values);
   };
+
   return (
     <form
       className={cn(
@@ -25,7 +22,12 @@ export const LoginForm: React.FC = () => {
       onSubmit={handleSubmit}
     >
       {isError && error && (
-        <Paragraph variant='error'>{getApiError(error)}</Paragraph>
+        <Alert
+          variant='error'
+          icon='ErrorIcon'
+          heading={errorHeadingText}
+          text={getApiError(error)}
+        />
       )}
       <Input
         value={values.email}
@@ -40,7 +42,7 @@ export const LoginForm: React.FC = () => {
         onChange={handleChange}
         disabled={isLoading}
       />
-      <Button type='submit' className='lg:max-w-xs' disabled={isLoading}>
+      <Button type='submit' disabled={isLoading}>
         {loginButton}
       </Button>
     </form>

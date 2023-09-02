@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { authApi } from '../api';
 
 interface AuthState {
   isAuthenticated: boolean;
@@ -20,18 +21,36 @@ export const authSlice = createSlice({
     setLoggedOut: (state) => {
       state.isAuthenticated = false;
     },
-    setForgotPassword: (state) => {
-      state.isForgotPassword = true;
-    },
-    setPasswordRestored: (state) => {
-      state.isForgotPassword = false;
-    },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(authApi.endpoints.getMe.matchFulfilled, (state) => {
+      state.isAuthenticated = true;
+    });
+    builder.addMatcher(
+      authApi.endpoints.postForgotPassword.matchFulfilled,
+      (state) => {
+        state.isForgotPassword = true;
+      },
+    );
+    builder.addMatcher(
+      authApi.endpoints.postResetPassword.matchFulfilled,
+      (state) => {
+        state.isForgotPassword = false;
+      },
+    );
+    builder.addMatcher(authApi.endpoints.postLogin.matchFulfilled, (state) => {
+      state.isAuthenticated = true;
+    });
+    builder.addMatcher(
+      authApi.endpoints.postRegister.matchFulfilled,
+      (state) => {
+        state.isAuthenticated = true;
+      },
+    );
+    builder.addMatcher(authApi.endpoints.postLogout.matchFulfilled, (state) => {
+      state.isAuthenticated = false;
+    });
   },
 });
 
-export const {
-  setLoggedIn,
-  setLoggedOut,
-  setForgotPassword,
-  setPasswordRestored,
-} = authSlice.actions;
+export const { setLoggedOut } = authSlice.actions;

@@ -1,1 +1,6 @@
-export type { OrderObject } from './types';
+export type {
+  OrderObject,
+  OrderList,
+  DetailedOrderObject,
+  OrderProps,
+} from './types';

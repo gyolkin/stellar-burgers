@@ -1,10 +1,12 @@
 export const navigationMap = {
   home: '/',
   feed: '/feed',
+  feedOrderById: '/feed/:id',
   ingredients: '/ingredients',
   ingredientById: '/ingredients/:id',
   profile: '/profile',
   profileOrders: '/profile/orders',
+  profileOrderById: '/profile/orders/:id',
   login: '/login',
   register: '/register',
   forgotPassword: '/forgot-password',

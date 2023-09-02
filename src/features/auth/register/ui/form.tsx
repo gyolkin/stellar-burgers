@@ -1,21 +1,19 @@
-import {
-  usePostRegisterMutation,
-  PasswordInput,
-  type UserObjectWithPassword,
-} from '@/entities/user';
+import { usePostRegisterMutation, PasswordInput } from '@/entities/user';
 import { cn, getApiError, useForm } from '@/shared/lib';
 import { constantsMap } from '@/shared/model';
-import { Input, Button, Paragraph } from '@/shared/ui';
+import { Input, Button, Alert } from '@/shared/ui';
 import { initialData } from '../model';
 
 export const RegisterForm: React.FC = () => {
-  const { registerButton } = constantsMap.features.auth.register;
+  const { registerButton, errorHeadingText } =
+    constantsMap.features.auth.register;
   const [register, { isLoading, isError, error }] = usePostRegisterMutation();
-  const { values, handleChange } = useForm<UserObjectWithPassword>(initialData);
+  const { values, handleChange } = useForm(initialData);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     register(values);
   };
+
   return (
     <form
       className={cn(
@@ -25,7 +23,12 @@ export const RegisterForm: React.FC = () => {
       onSubmit={handleSubmit}
     >
       {isError && error && (
-        <Paragraph variant='error'>{getApiError(error)}</Paragraph>
+        <Alert
+          variant='error'
+          icon='ErrorIcon'
+          heading={errorHeadingText}
+          text={getApiError(error)}
+        />
       )}
       <Input
         value={values.name}
@@ -48,7 +51,7 @@ export const RegisterForm: React.FC = () => {
         onChange={handleChange}
         disabled={isLoading}
       />
-      <Button type='submit' className='lg:max-w-xs' disabled={isLoading}>
+      <Button type='submit' disabled={isLoading}>
         {registerButton}
       </Button>
     </form>

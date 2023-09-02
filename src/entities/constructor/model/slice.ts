@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { v4 } from 'uuid';
-import type { ConstructorIngredientObject, IngredientObject } from './types';
 
 interface ConstructorState {
-  ingredients: Array<ConstructorIngredientObject>;
-  bun: ConstructorIngredientObject | null;
+  ingredients: Array<{ _id: IngredientID; uniqueId: UniqueIngredientID }>;
+  bun: IngredientID | null;
 }
 
 const initialState: ConstructorState = {
@@ -17,26 +16,29 @@ export const constructorSlice = createSlice({
   initialState,
   reducers: {
     addIngredient: {
-      reducer: (state, action: PayloadAction<ConstructorIngredientObject>) => {
-        if (action.payload.type === 'bun') {
-          state.bun = action.payload;
-        } else {
-          state.ingredients.push(action.payload);
-        }
+      reducer: (
+        state,
+        action: PayloadAction<{
+          _id: IngredientID;
+          uniqueId: UniqueIngredientID;
+        }>,
+      ) => {
+        state.ingredients.push({
+          _id: action.payload._id,
+          uniqueId: action.payload.uniqueId,
+        });
       },
-      prepare: (ingredient: IngredientObject) => {
-        const { image, name, price, _id, type } = ingredient;
+      prepare: (_id: IngredientID) => {
         return {
           payload: {
-            constructorId: v4(),
-            image,
-            name,
-            price,
+            uniqueId: v4(),
             _id,
-            type,
           },
         };
       },
+    },
+    addBun: (state, action: PayloadAction<IngredientID>) => {
+      state.bun = action.payload;
     },
     removeIngredient: (
       state,
@@ -54,7 +56,7 @@ export const constructorSlice = createSlice({
           state.ingredients.splice(indexToRemove, 1);
         }
       }
-      if (state.bun?._id === id) {
+      if (state.bun === id) {
         state.bun = null;
       }
     },
@@ -76,6 +78,7 @@ export const constructorSlice = createSlice({
 
 export const {
   addIngredient,
+  addBun,
   removeIngredient,
   moveIngredient,
   clearConstructor,

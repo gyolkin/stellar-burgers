@@ -1,1 +1,1 @@
-export { IngredientPage } from './ingredient';
+export { IngredientPage } from './page';

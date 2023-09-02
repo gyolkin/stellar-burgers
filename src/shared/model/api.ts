@@ -9,4 +9,6 @@ export const apiMap = {
   postForgotPassword: 'password-reset',
   postResetPassword: 'password-reset/reset',
   postOrder: 'orders',
+  getStreamingOrders: 'orders/all',
+  getStreamingUserOrders: 'orders',
 };

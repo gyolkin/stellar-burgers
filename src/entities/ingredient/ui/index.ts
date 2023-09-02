@@ -1,4 +1,4 @@
-export { Ingredient } from './card';
+export { Ingredient, ConstructorIngredient, OrderIngredient } from './card';
 export { IngredientPrice } from './price';
 export { IngredientModal } from './modal';
-export { ConstructorIngredient } from './constructor-card';
+export { IngredientIcon } from './icon';

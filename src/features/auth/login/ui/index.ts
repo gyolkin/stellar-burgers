@@ -1,2 +1,2 @@
 export { LoginForm } from './form';
-export { ProfileButton } from './navlink';
+export { ProfileButton } from './button';

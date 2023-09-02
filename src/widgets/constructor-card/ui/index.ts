@@ -1,0 +1,1 @@
+export { MemoizedConstructorElement } from './card';

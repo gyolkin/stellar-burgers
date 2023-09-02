@@ -11,7 +11,7 @@ export const LogoutButton: React.FC = () => {
   const token = Cookies.get('refreshToken');
   return (
     <Button
-      onClick={() => (token ? logout(token) : dispatch(setLoggedOut()))}
+      onClick={() => (token ? logout({ token }) : dispatch(setLoggedOut()))}
       variant='link'
       className='justify-start hover:transition-none hover:scale-100 duration-0 p-0 text-xl'
     >

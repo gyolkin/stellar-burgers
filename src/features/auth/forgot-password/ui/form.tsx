@@ -1,20 +1,17 @@
 import { useNavigate } from 'react-router-dom';
-import {
-  usePostForgotPasswordMutation,
-  type UserObject,
-} from '@/entities/user';
+import { usePostForgotPasswordMutation } from '@/entities/user';
 import { cn, getApiError, useForm } from '@/shared/lib';
 import { constantsMap, navigationMap } from '@/shared/model';
-import { Input, Button, Paragraph } from '@/shared/ui';
+import { Input, Button, Paragraph, Alert } from '@/shared/ui';
+import { initialData } from '../model';
 
 export const ForgotPasswordForm: React.FC = () => {
-  const { continueButton } = constantsMap.features.auth.forgotPassword;
+  const { continueButton, errorHeadingText } =
+    constantsMap.features.auth.forgotPassword;
   const navigate = useNavigate();
   const [forgotPassword, { isLoading, isError, error }] =
     usePostForgotPasswordMutation();
-  const { values, handleChange } = useForm<Pick<UserObject, 'email'>>({
-    email: '',
-  });
+  const { values, handleChange } = useForm(initialData);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const res = await forgotPassword(values).unwrap();
@@ -31,7 +28,12 @@ export const ForgotPasswordForm: React.FC = () => {
       onSubmit={handleSubmit}
     >
       {isError && error && (
-        <Paragraph variant='error'>{getApiError(error)}</Paragraph>
+        <Alert
+          variant='error'
+          icon='ErrorIcon'
+          heading={errorHeadingText}
+          text={getApiError(error)}
+        />
       )}
       <Input
         value={values.email}
@@ -41,7 +43,7 @@ export const ForgotPasswordForm: React.FC = () => {
         onChange={handleChange}
         disabled={isLoading}
       />
-      <Button type='submit' className='lg:max-w-xs' disabled={isLoading}>
+      <Button type='submit' disabled={isLoading}>
         {continueButton}
       </Button>
     </form>

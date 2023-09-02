@@ -1,39 +1,41 @@
-import {
-  type UserObjectWithPassword,
-  usePatchMeMutation,
-  useGetMeQuery,
-  EditInput,
-} from '@/entities/user';
+import { usePatchMeMutation, EditInput } from '@/entities/user';
 import { cn, getApiError, useForm } from '@/shared/lib';
 import { constantsMap } from '@/shared/model';
-import { Button, Paragraph } from '@/shared/ui';
+import { Alert, Button, Paragraph } from '@/shared/ui';
 import { useDataHasChanged } from '../lib';
-import { getInitialData } from '../model';
+import { useProfileFormInitialData } from '../model';
 
 export const ProfileForm: React.FC = () => {
-  const { changeButton, loadingText, successText } =
-    constantsMap.features.auth.profile;
+  const content = constantsMap.features.auth.profile;
   const [me, { isLoading, isError, error, isSuccess }] = usePatchMeMutation();
-  const { data } = useGetMeQuery();
-  const formData = getInitialData(data!);
-  const { values, handleChange } = useForm<UserObjectWithPassword>(formData);
+  const formData = useProfileFormInitialData();
+  const { values, handleChange } = useForm(formData);
   const hasChanged = useDataHasChanged(formData, values);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     me(values);
   };
+
   return (
     <form
+      onSubmit={handleSubmit}
       className={cn(
         'flex flex-col items-center gap-2 lg:gap-5',
         isLoading && 'animate-pulse',
       )}
     >
       {isError && error && (
-        <Paragraph variant='error'>{getApiError(error)}</Paragraph>
+        <Alert
+          variant='error'
+          icon='ErrorIcon'
+          heading={content.errorHeadingText}
+          text={getApiError(error)}
+        />
       )}
-      {isLoading && <Paragraph>{loadingText}</Paragraph>}
-      {isSuccess && <Paragraph variant='success'>{successText}</Paragraph>}
+      {isLoading && <Paragraph>{content.loadingText}</Paragraph>}
+      {isSuccess && (
+        <Alert variant='success' icon='TickIcon' text={content.successText} />
+      )}
       <EditInput
         value={values.name}
         type='text'
@@ -55,7 +57,7 @@ export const ProfileForm: React.FC = () => {
         placeholder='Пароль'
         onChange={handleChange}
       />
-      {hasChanged && <Button onClick={handleSubmit}>{changeButton}</Button>}
+      {hasChanged && <Button type='submit'>{content.changeButton}</Button>}
     </form>
   );
 };

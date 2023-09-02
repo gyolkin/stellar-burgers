@@ -1,0 +1,1 @@
+export { ProfileOrdersPage } from './page';

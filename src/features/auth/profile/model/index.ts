@@ -1,1 +1,1 @@
-export { getInitialData } from './data';
+export { useProfileFormInitialData } from './data';

@@ -1,1 +1,0 @@
-export { TypeTabs } from './tabs';

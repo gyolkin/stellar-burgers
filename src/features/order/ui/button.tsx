@@ -19,7 +19,7 @@ export const OrderButton: React.FC = () => {
   const [order, { data, isLoading, isError, error }] = usePostOrderMutation();
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    order(ingredientIds);
+    order({ ingredients: ingredientIds }).unwrap();
     setShowModal(true);
   };
   return (

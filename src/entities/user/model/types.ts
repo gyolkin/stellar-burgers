@@ -12,6 +12,11 @@ export type UserObjectWithPassword = UserObject & {
   password: string;
 };
 
+export type PasswordWithToken = {
+  password: string;
+  token: string;
+};
+
 export type TokenObject = {
   accessToken: string;
   refreshToken: string;

@@ -1,3 +1,2 @@
-export { PasswordInput } from './password-input';
-export { EditInput } from './edit-input';
+export { PasswordInput, EditInput } from './form';
 export { ProtectedRoute } from './protected-route';

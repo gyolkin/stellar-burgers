@@ -42,7 +42,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             )}
           >
             {heading && <p className='text-2xl font-bold'>{heading}</p>}
-            <button data-cy="close-modal" onClick={onClose}>
+            <button data-cy='close-modal' onClick={onClose}>
               <iconsMap.CloseIcon />
             </button>
           </div>

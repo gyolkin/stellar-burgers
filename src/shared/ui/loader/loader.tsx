@@ -1,4 +1,5 @@
 import { cn } from '@/shared/lib';
+import slogo from '@/shared/ui/slogo.png';
 import { Paragraph } from '../typography';
 import { LoaderProps } from './types';
 
@@ -15,7 +16,7 @@ export const Loader: React.FC<LoaderProps> = ({
         className,
       )}
     >
-      <img src='/img/slogo.png' className='h-24 w-24' alt='preloader' />
+      <img src={slogo} className='h-24 w-24' alt='preloader' />
       <Paragraph>{text}</Paragraph>
     </div>
   );

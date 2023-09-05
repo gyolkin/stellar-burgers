@@ -15,7 +15,6 @@ import {
   LogIn,
   CheckCheck,
   XCircle,
-  Info,
 } from 'lucide-react';
 
 export const iconsMap = {

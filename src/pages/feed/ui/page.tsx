@@ -98,11 +98,7 @@ export const FeedPage: React.FC = () => {
                   {data.orders
                     .filter((order) => order.status === 'pending')
                     .map((order) => (
-                      <Paragraph
-                        key={order.number}
-                        size='medium'
-                        font='digits'
-                      >
+                      <Paragraph key={order.number} size='medium' font='digits'>
                         {order.number}
                       </Paragraph>
                     ))}

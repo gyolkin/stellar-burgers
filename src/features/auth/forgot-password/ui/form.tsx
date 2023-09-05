@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { usePostForgotPasswordMutation } from '@/entities/user';
 import { cn, getApiError, useForm } from '@/shared/lib';
 import { constantsMap, navigationMap } from '@/shared/model';
-import { Input, Button, Paragraph, Alert } from '@/shared/ui';
+import { Input, Button, Alert } from '@/shared/ui';
 import { initialData } from '../model';
 
 export const ForgotPasswordForm: React.FC = () => {

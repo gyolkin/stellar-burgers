@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import { navigationMap } from '@/shared/model';
+import logo from '@/shared/ui/logo.png';
+import slogo from '@/shared/ui/slogo.png';
 
 export const MobileLogo: React.FC = () => {
   return (
     <Link to={navigationMap.home}>
-      <img src='/img/slogo.png' alt='mobile logo' width='50' height='50' />
+      <img src={slogo} alt='mobile logo' width='50' height='50' />
     </Link>
   );
 };
@@ -13,7 +15,7 @@ export const Logo: React.FC = () => {
   return (
     <Link to={navigationMap.home}>
       <img
-        src='/img/logo.png'
+        src={logo}
         alt='logo'
         width='290'
         height='50'

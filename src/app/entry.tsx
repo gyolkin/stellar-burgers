@@ -1,4 +1,4 @@
-import './base.css';
+import '@/shared/ui/base.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';

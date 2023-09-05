@@ -6,11 +6,11 @@ import {
 import { Mutex } from 'async-mutex';
 import Cookies from 'js-cookie';
 import { removeCookies, setCookies } from '../lib';
-import { apiMap, type ApiError } from '../model';
+import { apiMap, type ApiError, constantsMap } from '../model';
 
 const mutex = new Mutex();
 const _baseQuery = fetchBaseQuery({
-  baseUrl: import.meta.env.VITE_API_URL,
+  baseUrl: constantsMap.shared.config.apiUrl,
   prepareHeaders: (headers) => {
     const token = Cookies.get('accessToken');
     if (token) {

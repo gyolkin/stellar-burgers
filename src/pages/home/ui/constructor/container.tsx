@@ -20,6 +20,7 @@ export const ConstructorContainer: React.FC = () => {
   return (
     <>
       <div
+        data-cy="constructor-container"
         ref={dropTarget}
         className={cn(
           'h-full mb-2',

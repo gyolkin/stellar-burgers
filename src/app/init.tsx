@@ -9,7 +9,7 @@ import { Button, Loader, Paragraph } from '@/shared/ui';
 export const InitializationComponent: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
-  const { reloadPageText } = constantsMap.shared.config
+  const { reloadPageText } = constantsMap.shared.config;
   const {
     isLoading: isIngredientsLoading,
     isError: isIngredientsError,
@@ -30,7 +30,9 @@ export const InitializationComponent: React.FC<React.PropsWithChildren> = ({
     return (
       <div className='flex items-center justify-center h-screen'>
         <Paragraph size='large'>{getApiError(ingredientsError)}</Paragraph>
-        <Button onClick={() => window.location.reload()}>{reloadPageText}</Button>
+        <Button onClick={() => window.location.reload()}>
+          {reloadPageText}
+        </Button>
       </div>
     );
   }
@@ -39,10 +41,14 @@ export const InitializationComponent: React.FC<React.PropsWithChildren> = ({
     return (
       <div className='flex items-center justify-center h-screen'>
         <Paragraph size='large'>{getApiError(userError)}</Paragraph>
-        <Button onClick={() => {
-          removeCookies();
-          window.location.reload();
-        }}>{reloadPageText}</Button>
+        <Button
+          onClick={() => {
+            removeCookies();
+            window.location.reload();
+          }}
+        >
+          {reloadPageText}
+        </Button>
       </div>
     );
   }

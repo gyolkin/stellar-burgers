@@ -1,5 +1,5 @@
 import { baseApi } from '@/shared/api';
-import { apiMap } from '@/shared/model';
+import { apiMap, constantsMap } from '@/shared/model';
 import type { OrderObject, OrderList, DetailedOrderObject } from '../model';
 
 export const orderApi = baseApi.injectEndpoints({
@@ -34,7 +34,7 @@ export const orderSocketApi = baseApi.injectEndpoints({
         arg,
         { updateCachedData, cacheDataLoaded, cacheEntryRemoved },
       ) {
-        const ws = new WebSocket(import.meta.env.VITE_SOCKET_URL + '/' + arg);
+        const ws = new WebSocket(constantsMap.shared.config.wsUrl + arg);
         await cacheDataLoaded;
         const listener = (event: MessageEvent) => {
           const data = JSON.parse(event.data);

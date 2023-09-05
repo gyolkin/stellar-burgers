@@ -14,13 +14,11 @@ export const FeedPage: React.FC = () => {
   if (!data || (data && data.success === undefined)) {
     return (
       <Loader text={content.orders.loadingText} className='pt-2 lg:pt-10' />
-    )
+    );
   }
 
   if (data && !data.success) {
-    return (
-      <Paragraph size='large'>{content.orders.errorText}</Paragraph>
-    )
+    return <Paragraph size='large'>{content.orders.errorText}</Paragraph>;
   }
 
   if (data && data.success) {
@@ -104,7 +102,6 @@ export const FeedPage: React.FC = () => {
                         key={order.number}
                         size='medium'
                         font='digits'
-                        variant='success'
                       >
                         {order.number}
                       </Paragraph>

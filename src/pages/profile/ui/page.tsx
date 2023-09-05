@@ -12,15 +12,15 @@ export const ProfileOrdersPage: React.FC = () => {
   );
 
   if (!data || (data && data.success === undefined)) {
-    return (
-      <Paragraph className='text-center'>{loadingText}</Paragraph>
-    )
+    return <Paragraph className='text-center'>{loadingText}</Paragraph>;
   }
 
   if (data && !data.success) {
     return (
-      <Paragraph variant="error" className='text-center'>{errorText}</Paragraph>
-    )
+      <Paragraph variant='error' className='text-center'>
+        {errorText}
+      </Paragraph>
+    );
   }
 
   if (data && data.success) {
@@ -43,4 +43,4 @@ export const ProfileOrdersPage: React.FC = () => {
       </>
     );
   }
-}
+};

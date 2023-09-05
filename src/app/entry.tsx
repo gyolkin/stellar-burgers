@@ -11,7 +11,7 @@ import { store } from './store';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ReduxProvider store={store}>
-      <RouterProvider>
+      <RouterProvider basename={import.meta.env.VITE_DEV_MODE !== 'production' ? undefined : '/stellar-burgers' }>
         <InitializationComponent>
           <Router />
         </InitializationComponent>
